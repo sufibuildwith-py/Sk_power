@@ -15,8 +15,12 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
   return (
     <div className="relative z-20 bg-[#F7F5EF] text-solar-charcoal">
       {/* 1. Solutions Section — ROW 01 (LEFT TO RIGHT Draggable Glass Track) */}
-      <section id="solutions" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10 overflow-hidden">
-        <div className="max-w-xl mb-12 sm:mb-16">
+      <section id="solutions" className="relative py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10 overflow-hidden">
+        {/* Soft Sky-Blue & Solar Amber Ambient Light Glows behind the glass track */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[380px] bg-gradient-to-tr from-[#8cc8f5]/26 via-[#bce2fa]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[320px] bg-gradient-to-tl from-solar-amber/14 via-[#c8e6fc]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-xl mb-12 sm:mb-16 relative z-10">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className={`text-[10px] font-semibold uppercase text-solar-charcoal/70 ${

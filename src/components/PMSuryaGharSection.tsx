@@ -115,10 +115,10 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
         {/* Right Column (40% on desktop): Authentic PM Modi Photograph Frame */}
         <div className="lg:col-span-5 relative">
           {/* Subtle Ambient Sky-Blue & Amber Backlight */}
-          <div className="absolute -inset-4 bg-gradient-to-tr from-[#c8e2f4]/40 via-solar-amber/15 to-transparent rounded-3xl blur-2xl pointer-events-none" />
+          <div className="absolute -inset-6 bg-gradient-to-tr from-[#7fc2f0]/35 via-[#b0ddfa]/25 to-solar-amber/15 rounded-3xl blur-2xl pointer-events-none" />
 
           <div className="relative glass-frame rounded-3xl p-4 sm:p-5 overflow-hidden group">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#edf2f5] border border-white/60 shadow-inner">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/50 shadow-inner">
               <picture>
                 <source srcSet="/pm-surya-ghar/pm-modi-initiative.webp" type="image/webp" />
                 <img
@@ -154,7 +154,11 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           CHAPTER 02 — THE NUMBERS THAT MATTER
           ROW 02: RIGHT TO LEFT Draggable Glass Track
          ========================================================================= */}
-      <div className="mb-20 sm:mb-28 overflow-hidden">
+      <div className="mb-20 sm:mb-28 overflow-hidden relative">
+        {/* Ambient Sky-Blue & Solar Amber Glows behind Stats Track */}
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[650px] h-[340px] bg-gradient-to-r from-[#80c3f2]/26 via-[#b6defa]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[520px] h-[300px] bg-gradient-to-l from-solar-amber/15 via-[#bce3fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
+
         <DraggableCardTrack
           direction="right-to-left"
           speed={22}
@@ -249,52 +253,56 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
       {/* =========================================================================
           CHAPTER 07 — DOCUMENTS & PREPARATION (Compact Two-Column Glass Checklist)
          ========================================================================= */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-10 mb-20 sm:mb-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Heading & Disclaimer */}
-          <div className="lg:col-span-4">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
-                {t('pmSuryaGhar.documents.eyebrow')}
-              </span>
+      <div className="relative mb-20 sm:mb-28">
+        {/* Ambient Sky-Blue Glow behind Documents Glass Panel */}
+        <div className="absolute -top-10 right-10 w-[550px] h-[350px] bg-gradient-to-bl from-[#9ed2f8]/24 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="relative glass-panel rounded-3xl p-6 sm:p-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Column: Heading & Disclaimer */}
+            <div className="lg:col-span-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
+                  {t('pmSuryaGhar.documents.eyebrow')}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl font-normal text-solar-ink mb-3">
+                {t('pmSuryaGhar.documents.title')}
+              </h3>
+              <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
+                {t('pmSuryaGhar.documents.desc')}
+              </p>
+              <div className="glass-card-subtle p-4 rounded-2xl flex items-start gap-2.5 text-xs text-solar-charcoal/80">
+                <Info className="w-4 h-4 text-solar-amber shrink-0 mt-0.5" />
+                <span>{t('pmSuryaGhar.documents.note')}</span>
+              </div>
             </div>
-            <h3 className="font-display text-2xl sm:text-3xl font-normal text-solar-ink mb-3">
-              {t('pmSuryaGhar.documents.title')}
-            </h3>
-            <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
-              {t('pmSuryaGhar.documents.desc')}
-            </p>
-            <div className="glass-card-subtle p-4 rounded-2xl flex items-start gap-2.5 text-xs text-solar-charcoal/80">
-              <Info className="w-4 h-4 text-solar-amber shrink-0 mt-0.5" />
-              <span>{t('pmSuryaGhar.documents.note')}</span>
-            </div>
-          </div>
 
-          {/* Right Column: Interactive Checklist */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {documentItems.map((doc, idx) => {
-              const icons = [FileText, Smartphone, ShieldCheck, CreditCard, Camera];
-              const IconComp = icons[idx % icons.length];
-              return (
-                <div
-                  key={idx}
-                  className="glass-card-subtle p-4 sm:p-5 rounded-2xl flex items-start gap-3.5 hover:bg-white/90 transition-all"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber shrink-0 mt-0.5">
-                    <IconComp className="w-4 h-4 text-solar-amber" />
+            {/* Right Column: Interactive Checklist */}
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {documentItems.map((doc, idx) => {
+                const icons = [FileText, Smartphone, ShieldCheck, CreditCard, Camera];
+                const IconComp = icons[idx % icons.length];
+                return (
+                  <div
+                    key={idx}
+                    className="glass-card-subtle p-4 sm:p-5 rounded-2xl flex items-start gap-3.5 hover:bg-white/40 transition-all"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber shrink-0 mt-0.5">
+                      <IconComp className="w-4 h-4 text-solar-amber" />
+                    </div>
+                    <div>
+                      <h5 className="font-display font-semibold text-xs sm:text-sm text-solar-ink mb-1">
+                        {doc.name}
+                      </h5>
+                      <p className="text-xs text-solar-charcoal/75 leading-relaxed">
+                        {doc.detail}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="font-display font-semibold text-xs sm:text-sm text-solar-ink mb-1">
-                      {doc.name}
-                    </h5>
-                    <p className="text-xs text-solar-charcoal/75 leading-relaxed">
-                      {doc.detail}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -303,8 +311,12 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           SUSTAINABLE ADVANTAGES / ROOFTOP SOLAR BENEFITS
           ROW 03: LEFT TO RIGHT Draggable Glass Track
          ========================================================================= */}
-      <div className="mb-20 sm:mb-28 overflow-hidden">
-        <div className="max-w-xl mb-10">
+      <div className="mb-20 sm:mb-28 overflow-hidden relative">
+        {/* Ambient Sky-Blue & Soft Amber Glows behind Benefits Track */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#8ec9f5]/24 via-[#bbe0fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[520px] h-[300px] bg-gradient-to-tl from-solar-amber/14 via-[#c4e6fc]/16 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-xl mb-10 relative z-10">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
@@ -345,7 +357,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           ))}
         </DraggableCardTrack>
 
-        <p className="mt-4 text-[11px] text-solar-charcoal/60">
+        <p className="mt-4 text-[11px] text-solar-charcoal/60 relative z-10">
           {t('pmSuryaGhar.benefits.disclaimer')}
         </p>
       </div>
@@ -353,76 +365,82 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
       {/* =========================================================================
           CHAPTER 08 — FREQUENTLY ASKED QUESTIONS (Frosted Glass Panel System)
          ========================================================================= */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-10 md:p-12 mb-20 sm:mb-28">
-        <div className="max-w-xl mb-10">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
-              {t('pmSuryaGhar.faqs.eyebrow')}
-            </span>
+      <div className="relative mb-20 sm:mb-28">
+        {/* Ambient Sky-Blue & Amber Glows behind FAQ Glass Panel */}
+        <div className="absolute top-1/3 left-1/4 w-[700px] h-[450px] bg-gradient-to-tr from-[#94ccf6]/24 via-[#bde2fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 w-[480px] h-[320px] bg-gradient-to-tl from-solar-amber/14 via-[#c8e6fc]/16 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative glass-panel rounded-3xl p-6 sm:p-10 md:p-12">
+          <div className="max-w-xl mb-10">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
+                {t('pmSuryaGhar.faqs.eyebrow')}
+              </span>
+            </div>
+            <h3 className="font-display text-2xl sm:text-3xl font-normal text-solar-ink mb-2">
+              {t('pmSuryaGhar.faqs.title')}
+            </h3>
+            <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed">
+              {t('pmSuryaGhar.faqs.desc')}
+            </p>
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl font-normal text-solar-ink mb-2">
-            {t('pmSuryaGhar.faqs.title')}
-          </h3>
-          <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed">
-            {t('pmSuryaGhar.faqs.desc')}
-          </p>
-        </div>
 
-        <div className="space-y-3">
-          {faqItems.map((item, idx) => {
-            const isOpen = openFaqIndex === idx;
-            return (
-              <div
-                key={idx}
-                className={`glass-card-subtle rounded-2xl overflow-hidden transition-all duration-300 ${
-                  isOpen
-                    ? 'bg-white/90 shadow-md border-solar-amber/40 ring-1 ring-solar-amber/20'
-                    : 'hover:bg-white/75'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(idx)}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-answer-${idx}`}
-                  className="w-full flex items-center justify-between text-left gap-4 p-5 sm:p-6 focus:outline-none group"
+          <div className="space-y-3">
+            {faqItems.map((item, idx) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`glass-card-subtle rounded-2xl overflow-hidden transition-all duration-300 ${
+                    isOpen
+                      ? 'bg-white/40 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
+                      : 'hover:bg-white/30'
+                  }`}
                 >
-                  <span className="font-display font-medium text-sm sm:text-base text-solar-ink group-hover:text-solar-charcoal transition-colors">
-                    {idx + 1}. {item.q}
-                  </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-solar-amber/10 text-solar-charcoal shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-solar-amber/25 text-solar-ink' : ''
-                    }`}
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(idx)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${idx}`}
+                    className="w-full flex items-center justify-between text-left gap-4 p-5 sm:p-6 focus:outline-none group"
                   >
-                    <ChevronDown className="w-4 h-4 text-solar-amber" />
-                  </div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`faq-answer-${idx}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: 'easeOut' }}
-                      className="overflow-hidden"
+                    <span className="font-display font-medium text-sm sm:text-base text-solar-ink group-hover:text-solar-charcoal transition-colors">
+                      {idx + 1}. {item.q}
+                    </span>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center bg-solar-amber/10 text-solar-charcoal shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180 bg-solar-amber/25 text-solar-ink' : ''
+                      }`}
                     >
-                      <p
-                        className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
-                          isHindi ? 'leading-[1.7]' : ''
-                        }`}
+                      <ChevronDown className="w-4 h-4 text-solar-amber" />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-answer-${idx}`}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: 'easeOut' }}
+                        className="overflow-hidden"
                       >
-                        {item.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                        <p
+                          className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
+                            isHindi ? 'leading-[1.7]' : ''
+                          }`}
+                        >
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -430,8 +448,12 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           CHAPTER 09 — HOW SK SOLAR WALA CAN HELP & FINAL CTA
           ROW 04: RIGHT TO LEFT Draggable Glass Track
          ========================================================================= */}
-      <div className="mb-20 sm:mb-28 overflow-hidden">
-        <div className="max-w-2xl mb-8">
+      <div className="mb-20 sm:mb-28 overflow-hidden relative">
+        {/* Ambient Sky-Blue & Amber Glows behind Services Track */}
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[650px] h-[350px] bg-gradient-to-tr from-[#8cc8f5]/25 via-[#bee2fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[520px] h-[300px] bg-gradient-to-tl from-solar-amber/14 via-[#c4e6fc]/16 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-2xl mb-8 relative z-10">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
