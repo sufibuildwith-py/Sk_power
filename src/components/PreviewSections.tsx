@@ -44,24 +44,23 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
         {/* ROW 01: LEFT TO RIGHT Draggable Glass Track */}
         <DraggableCardTrack
           direction="left-to-right"
-          speed={24}
-          trackClassName="gap-6 sm:gap-8 pr-6 sm:pr-8"
+          trackClassName="gap-3.5 sm:gap-6 md:gap-8 pr-6 sm:pr-8"
           ariaLabel="Solar Solutions Track"
         >
           {[
             /* Solution 1: Residential */
             <div
               key="sol-residential"
-              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <SunMedium className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                <h3 className={`font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
                   {t('solutions.residentialTitle')}
                 </h3>
-                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                <p className={`text-xs sm:text-sm text-solar-charcoal/80 mb-5 sm:mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
                   {t('solutions.residentialDesc')}
                 </p>
               </div>
@@ -77,16 +76,16 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
             /* Solution 2: Commercial */
             <div
               key="sol-commercial"
-              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <Zap className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                <h3 className={`font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
                   {t('solutions.commercialTitle')}
                 </h3>
-                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                <p className={`text-xs sm:text-sm text-solar-charcoal/80 mb-5 sm:mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
                   {t('solutions.commercialDesc')}
                 </p>
               </div>
@@ -102,16 +101,16 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
             /* Solution 3: Distribution */
             <div
               key="sol-distribution"
-              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <ShieldCheck className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                <h3 className={`font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
                   {t('solutions.distributionTitle')}
                 </h3>
-                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                <p className={`text-xs sm:text-sm text-solar-charcoal/80 mb-5 sm:mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
                   {t('solutions.distributionDesc')}
                 </p>
               </div>

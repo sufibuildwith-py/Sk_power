@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import {
   SunMedium,
-  ExternalLink,
   ChevronDown,
   FileText,
   ShieldCheck,
@@ -101,15 +100,13 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             </div>
           </div>
 
-          <a
-            href="https://pmsuryaghar.gov.in/#/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onOpenQuote}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-solar-ink text-solar-ivory text-xs font-semibold hover:bg-solar-charcoal transition-all group shadow-sm"
           >
-            <span>{t('pmSuryaGhar.subsidy.officialCta')}</span>
-            <ExternalLink className="w-3.5 h-3.5 text-solar-amber group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+            <span>{t('pmSuryaGhar.subsidy.assistanceCta')}</span>
+            <ArrowRight className="w-3.5 h-3.5 text-solar-amber group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
 
         {/* Right Column (40% on desktop): Authentic PM Modi Photograph Frame */}
@@ -161,8 +158,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="right-to-left"
-          speed={22}
-          trackClassName="gap-6 pr-6"
+          trackClassName="gap-3.5 sm:gap-6 pr-6"
           ariaLabel="PM Surya Ghar Key Statistics Track"
         >
           {[
@@ -187,17 +183,17 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="glass-card p-8 rounded-3xl w-[300px] sm:w-[360px] md:w-[390px] flex flex-col justify-between group select-none relative overflow-hidden"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[78vw] min-w-[260px] max-w-[320px] sm:w-[340px] md:w-[380px] flex flex-col justify-between group select-none relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-solar-amber/15 transition-colors" />
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <stat.icon className="w-5 h-5 text-solar-amber" />
                 </div>
-                <div className="font-display text-4xl sm:text-5xl font-semibold text-solar-ink mb-2.5 tracking-tight">
+                <div className="font-display text-3xl sm:text-5xl font-semibold text-solar-ink mb-2 tracking-tight">
                   {stat.val}
                 </div>
-                <div className="text-sm font-semibold text-solar-charcoal/90 mb-2">
+                <div className="text-xs sm:text-sm font-semibold text-solar-charcoal/90 mb-2">
                   {stat.lbl}
                 </div>
               </div>
@@ -218,7 +214,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             <source srcSet="/pm-surya-ghar/indian-rooftop-solar-1.webp" type="image/webp" />
             <img
               src="/pm-surya-ghar/indian-rooftop-solar-1.jpg"
-              alt="Real residential rooftop solar panels installed in Gujarat, India"
+              alt="Residential rooftop solar panels installed in Varanasi, Uttar Pradesh"
               className="w-full h-full object-cover object-[50%_35%] transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
@@ -333,23 +329,22 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="left-to-right"
-          speed={24}
-          trackClassName="gap-5 pr-5"
+          trackClassName="gap-3.5 sm:gap-5 pr-5"
           ariaLabel="Residential Rooftop Solar Advantages Track"
         >
           {benefitItems.map((benefit, idx) => (
             <div
               key={idx}
-              className="glass-card p-6 sm:p-7 rounded-3xl w-[260px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none"
+              className="glass-card p-5 sm:p-7 rounded-3xl w-[76vw] min-w-[250px] max-w-[300px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-10 h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 group-hover:scale-105 transition-transform">
-                  <SunMedium className="w-5 h-5 text-solar-amber" />
+                <div className="w-9 sm:w-10 h-9 sm:h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-4 sm:mb-5 group-hover:scale-105 transition-transform">
+                  <SunMedium className="w-4 sm:w-5 h-4 sm:h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display font-semibold text-sm sm:text-base text-solar-ink mb-2.5">
+                <h4 className="font-display font-semibold text-xs sm:text-sm md:text-base text-solar-ink mb-2 sm:mb-2.5">
                   {benefit.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed">
+                <p className="text-xs text-solar-charcoal/80 leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>
@@ -496,8 +491,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
         {/* ROW 04: RIGHT TO LEFT Draggable Glass Track */}
         <DraggableCardTrack
           direction="right-to-left"
-          speed={22}
-          trackClassName="gap-6 pr-6"
+          trackClassName="gap-3.5 sm:gap-6 pr-6"
           ariaLabel="SK SOLAR WALA Services Track"
           className="mb-8"
         >
@@ -505,16 +499,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 1: Consultation */
             <div
               key="srv-consult"
-              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <Compass className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
                   {t('pmSuryaGhar.services.consultation.title')}
                 </h4>
-                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
                   {t('pmSuryaGhar.services.consultation.desc')}
                 </p>
               </div>
@@ -530,16 +524,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 2: Selection */
             <div
               key="srv-select"
-              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <Layers className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
                   {t('pmSuryaGhar.services.selection.title')}
                 </h4>
-                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
                   {t('pmSuryaGhar.services.selection.desc')}
                 </p>
               </div>
@@ -555,16 +549,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 3: Installation Assistance */
             <div
               key="srv-assist"
-              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
                   <Wrench className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
                   {t('pmSuryaGhar.services.assistance.title')}
                 </h4>
-                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
                   {t('pmSuryaGhar.services.assistance.desc')}
                 </p>
               </div>
@@ -600,15 +594,13 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-6">
-            <a
-              href="https://pmsuryaghar.gov.in/#/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenQuote}
               className="px-6 py-3.5 rounded-full bg-solar-amber text-solar-ink text-xs sm:text-sm font-semibold hover:bg-[#dba14c] transition-all shadow-md inline-flex items-center gap-2 group"
             >
               <span>{t('pmSuryaGhar.ctaPanel.primaryBtn')}</span>
-              <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
 
             <button
               onClick={onOpenQuote}

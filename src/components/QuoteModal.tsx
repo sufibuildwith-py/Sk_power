@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, MapPin, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface QuoteModalProps {
@@ -11,7 +11,8 @@ interface QuoteModalProps {
 export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
-  const [propertyType, setPropertyType] = useState<'residential' | 'commercial'>('residential');
+  const [serviceInterest, setServiceInterest] = useState<string>('pmsuryaghar');
+  const [selectedCity, setSelectedCity] = useState<string>('varanasi');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -38,7 +39,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -54,10 +55,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="relative z-10 w-full max-w-lg bg-[#FAF9F5] rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/60 overflow-hidden"
+            className="relative z-10 w-full max-w-lg bg-[#FAF9F5] rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/60 my-auto max-h-[92vh] overflow-y-auto no-scrollbar"
           >
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4 sm:mb-5">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
                 <span className="font-display font-semibold text-xs tracking-wider uppercase text-solar-ink">
@@ -81,7 +82,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                 <h3 className="font-display text-2xl font-medium text-solar-ink mb-2">
                   {t('quoteModal.submittedTitle')}
                 </h3>
-                <p className="text-sm text-solar-charcoal/80 max-w-xs mx-auto mb-6">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 max-w-xs mx-auto mb-6">
                   {t('quoteModal.submittedDesc')}
                 </p>
                 <button
@@ -92,9 +93,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
                 <div>
-                  <h2 className="font-display text-2xl font-normal text-solar-ink mb-1">
+                  <h2 className="font-display text-xl sm:text-2xl font-normal text-solar-ink mb-1">
                     {t('quoteModal.title')}
                   </h2>
                   <p className="text-xs text-solar-charcoal/70">
@@ -102,55 +103,128 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   </p>
                 </div>
 
-                {/* Property selector */}
-                <div className="grid grid-cols-2 gap-2 p-1 bg-solar-ink/5 rounded-xl text-xs font-medium mt-1">
-                  <button
-                    type="button"
-                    onClick={() => setPropertyType('residential')}
-                    className={`py-2 rounded-lg transition-all ${
-                      propertyType === 'residential'
-                        ? 'bg-white shadow text-solar-ink font-semibold'
-                        : 'text-solar-charcoal/70 hover:text-solar-ink'
-                    }`}
-                  >
-                    {t('quoteModal.residentialTab')}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPropertyType('commercial')}
-                    className={`py-2 rounded-lg transition-all ${
-                      propertyType === 'commercial'
-                        ? 'bg-white shadow text-solar-ink font-semibold'
-                        : 'text-solar-charcoal/70 hover:text-solar-ink'
-                    }`}
-                  >
-                    {t('quoteModal.commercialTab')}
-                  </button>
+                {/* Service Area Verified Badge */}
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-solar-amber/10 border border-solar-amber/20 text-solar-ink text-xs">
+                  <MapPin className="w-4 h-4 text-solar-amber shrink-0" />
+                  <span className="font-medium">
+                    {t('quoteModal.serviceAreaNotice')}
+                  </span>
                 </div>
 
-                <div className="space-y-3 mt-1">
-                  <div>
-                    <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
-                      {t('quoteModal.fullNameLabel')}
-                    </label>
-                    <input
-                      required
-                      type="text"
-                      placeholder={t('quoteModal.fullNamePlaceholder')}
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
-                    />
+                {/* Service Interest Selector */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1.5">
+                    {t('quoteModal.serviceInterestLabel')}
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setServiceInterest('pmsuryaghar')}
+                      className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-center gap-2 ${
+                        serviceInterest === 'pmsuryaghar'
+                          ? 'bg-solar-amber/15 border-solar-amber text-solar-ink font-semibold shadow-sm'
+                          : 'bg-white border-solar-charcoal/15 text-solar-charcoal hover:bg-white/80'
+                      }`}
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-solar-amber shrink-0" />
+                      <span>{t('quoteModal.serviceTypeSuryaGhar')}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setServiceInterest('residential')}
+                      className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-center gap-2 ${
+                        serviceInterest === 'residential'
+                          ? 'bg-solar-ink/10 border-solar-ink text-solar-ink font-semibold shadow-sm'
+                          : 'bg-white border-solar-charcoal/15 text-solar-charcoal hover:bg-white/80'
+                      }`}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-solar-amber shrink-0" />
+                      <span>{t('quoteModal.serviceTypeResidential')}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setServiceInterest('commercial')}
+                      className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-center gap-2 ${
+                        serviceInterest === 'commercial'
+                          ? 'bg-solar-ink/10 border-solar-ink text-solar-ink font-semibold shadow-sm'
+                          : 'bg-white border-solar-charcoal/15 text-solar-charcoal hover:bg-white/80'
+                      }`}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-solar-ink/40 shrink-0" />
+                      <span>{t('quoteModal.serviceTypeCommercial')}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setServiceInterest('hardware')}
+                      className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-center gap-2 ${
+                        serviceInterest === 'hardware'
+                          ? 'bg-solar-ink/10 border-solar-ink text-solar-ink font-semibold shadow-sm'
+                          : 'bg-white border-solar-charcoal/15 text-solar-charcoal hover:bg-white/80'
+                      }`}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-solar-ink/40 shrink-0" />
+                      <span>{t('quoteModal.serviceTypeHardware')}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Form Fields */}
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
+                        {t('quoteModal.fullNameLabel')} *
+                      </label>
+                      <input
+                        required
+                        type="text"
+                        placeholder={t('quoteModal.fullNamePlaceholder')}
+                        className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
+                        {t('quoteModal.phoneLabel')} *
+                      </label>
+                      <input
+                        required
+                        type="tel"
+                        placeholder={t('quoteModal.phonePlaceholder')}
+                        className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
-                      {t('quoteModal.emailLabel')}
-                    </label>
-                    <input
-                      required
-                      type="email"
-                      placeholder={t('quoteModal.emailPlaceholder')}
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
+                        {t('quoteModal.serviceStateLabel')}
+                      </label>
+                      <input
+                        type="text"
+                        disabled
+                        value={t('quoteModal.serviceStateValue')}
+                        className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-solar-ink/5 border border-solar-charcoal/10 text-solar-charcoal font-medium cursor-not-allowed"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-semibold text-solar-charcoal/80 mb-1">
+                        {t('quoteModal.serviceCityLabel')}
+                      </label>
+                      <select
+                        value={selectedCity}
+                        onChange={(e) => setSelectedCity(e.target.value)}
+                        className="w-full px-3 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
+                      >
+                        <option value="varanasi">{t('quoteModal.cityVaranasi')}</option>
+                        <option value="nearby_up">{t('quoteModal.cityNearbyUP')}</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div>
@@ -160,14 +234,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                     <input
                       type="text"
                       placeholder={t('quoteModal.billPlaceholder')}
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
                     />
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-3 w-full py-3.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill flex items-center justify-center gap-2 group transition-all"
+                  className="mt-2 w-full py-3 sm:py-3.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill flex items-center justify-center gap-2 group transition-all"
                 >
                   <span>{t('quoteModal.submitButton')}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-solar-amber group-hover:translate-x-1 transition-transform" />

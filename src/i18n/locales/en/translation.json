@@ -13,7 +13,7 @@
     "eyebrow": "SOLAR TECHNOLOGY · DISTRIBUTION · INSTALLATION",
     "line1": "The power of the sun,",
     "line2": "within your hands.",
-    "description": "Premium solar products and complete energy solutions for homes, businesses, and communities embracing a cleaner future.",
+    "description": "Serving homes and businesses across Uttar Pradesh with rooftop solar, Tier-1 equipment distribution, and end-to-end installation craftsmanship, primarily in Varanasi and nearby areas.",
     "primaryCTA": "Explore Solutions",
     "secondaryCTA": "Browse Products",
     "bottomStatement": "CLEAN ENERGY. COMPLETE SOLUTIONS.",
@@ -68,7 +68,7 @@
     "eyebrow": "ABOUT SK SOLAR WALA",
     "title": "Energy, beautifully engineered.",
     "paragraph1": "SK SOLAR WALA was founded on a simple conviction: clean energy infrastructure should embody the same design precision, architectural elegance, and uncompromising quality as the world’s most refined consumer technology.",
-    "paragraph2": "We bridge the divide between precision equipment distribution and end-to-end installation craftsmanship, ensuring every solar array performs at its mathematical optimum for decades.",
+    "paragraph2": "Serving homes and businesses across Uttar Pradesh with our roots in Varanasi, we bridge the divide between precision equipment distribution and end-to-end installation craftsmanship, ensuring every solar array performs at its mathematical optimum for decades.",
     "stat1Value": "Tier-1",
     "stat1Label": "Silicon Standards",
     "stat2Value": "25-Year",
@@ -93,13 +93,13 @@
     "supportingQuote": "An initiative by the Government of India helping households generate their own electricity and embrace clean energy.",
     "introParagraph": "Launched by the Government of India, the PM Surya Ghar: Muft Bijli Yojana is a transformative national initiative aimed at accelerating residential rooftop solar adoption. Targeting one crore households across the country, the scheme is designed to provide substantial financial assistance, enabling families to enjoy up to 300 units of free electricity every month while fostering long-term national energy independence.",
     "govAttribution": "An initiative of the Government of India · Ministry of New and Renewable Energy",
-    "infoDisclosure": "Informational guide curated by SK SOLAR WALA · Official portal: pmsuryaghar.gov.in",
+    "infoDisclosure": "Informational guide curated by SK SOLAR WALA · Serving Varanasi & Uttar Pradesh",
     "modiCaption": "Prime Minister Narendra Modi announced PM Surya Ghar: Muft Bijli Yojana on 13 February 2024 to empower 1 crore households with rooftop solar.",
     "modiSource": "Official Portrait · Government of India (GODL)",
     "storyEyebrow": "ROOFTOP SOLAR ADOPTION",
     "storyHeadline": "Turn your rooftop into an energy asset.",
     "storySub": "Real residential rooftop solar installations across India generating clean, decentralized power directly under the sun.",
-    "storyCaption": "Residential rooftop solar in Mehsana, Gujarat · Verified field installation",
+    "storyCaption": "Residential rooftop solar in Varanasi, Uttar Pradesh · Verified local installation",
     "subsidyProgressionLabel": "General-State Central Subsidy Progression",
     "journeyInteractiveHint": "Select any step to view procedural details & visual verification",
     "stats": {
@@ -157,7 +157,8 @@
       "specialRegionNote": "Special Category States and UTs (North-Eastern states including Sikkim, Uttarakhand, Himachal Pradesh, Jammu & Kashmir, Ladakh, Andaman & Nicobar, and Lakshadweep) receive higher assistance: ₹33,000/kW for the first 2 kW and ₹19,800 for the 3rd kW, with a maximum cap of ₹85,800.",
       "rwaNote": "Group Housing Societies (GHS) / Resident Welfare Associations (RWAs) can receive CFA of ₹18,000 per kW for common facilities such as EV charging and water pumping (up to 500 kWp total).",
       "dbtNote": "Important: The subsidy is disbursed through Direct Benefit Transfer (DBT) directly into your bank account after system installation, safety inspection, and DISCOM commissioning. It is not an upfront dealer discount.",
-      "officialCta": "Check Official Subsidy Details"
+      "officialCta": "Get Help With Your PM Surya Ghar Application",
+      "assistanceCta": "Get Help With Your PM Surya Ghar Application"
     },
     "eligibility": {
       "eyebrow": "QUALIFICATION CRITERIA",
@@ -196,8 +197,8 @@
       "steps": [
         {
           "step": "01",
-          "title": "Portal Registration",
-          "desc": "Visit pmsuryaghar.gov.in, select your state and electricity distribution company (DISCOM), and enter your consumer account number and mobile number to register."
+          "title": "Portal Registration & DISCOM Verification",
+          "desc": "Our team assists homeowners across Varanasi and UP in verifying local DISCOM consumer account details (such as PVVNL) and navigating the initial registration formalities on the National Portal."
         },
         {
           "step": "02",
@@ -353,33 +354,42 @@
       },
       "assistance": {
         "title": "Installation Assistance",
-        "desc": "Discuss installation planning, structural safety guidelines, and understand the applicable application steps for your region."
+        "desc": "Discuss installation planning, structural safety guidelines, and complete DISCOM net-metering and application formalities across Varanasi and Uttar Pradesh."
       },
-      "ethicalDisclaimer": "Ethical Transparency: SK SOLAR WALA is an independent clean energy brand and hardware distributor. We do not claim official government empanelment, nor do we represent the Ministry of New and Renewable Energy or any DISCOM. Official scheme applications, feasibility assessments, and subsidy disbursals remain under the exclusive jurisdiction of the Government of India via pmsuryaghar.gov.in."
+      "ethicalDisclaimer": "Ethical Transparency: SK SOLAR WALA is an independent clean energy vendor and equipment distributor serving Uttar Pradesh. We assist homeowners with application preparation and installation guidance. Official scheme eligibility, technical feasibility approvals, and direct subsidy disbursements remain under the jurisdiction of the Government of India via the National Portal."
     },
     "ctaPanel": {
-      "title": "Ready to explore rooftop solar?",
-      "subtitle": "Take the first step towards a more energy-independent home.",
-      "primaryBtn": "Apply on Official Portal",
-      "secondaryBtn": "Talk to SK SOLAR WALA",
-      "disclaimer": "Scheme applications, eligibility decisions, and subsidy disbursement are governed by the official Government of India portal and applicable authorities."
+      "title": "Get Help With Your PM Surya Ghar Application",
+      "subtitle": "From understanding eligibility to completing the required application formalities, our team can guide you through the process.",
+      "primaryBtn": "Get PM Surya Ghar Assistance",
+      "secondaryBtn": "Talk to Our Team",
+      "disclaimer": "Serving residential homes across Varanasi and Uttar Pradesh. Scheme applications, eligibility decisions, and subsidy disbursement are governed by the official Government of India portal and applicable authorities."
     }
   },
   "quoteModal": {
     "badge": "SK SOLAR WALA ESTIMATE",
     "title": "Request an Energy Consultation",
-    "subtitle": "Engineered hardware, precision distribution, and certified installation.",
-    "residentialTab": "Residential System",
-    "commercialTab": "Commercial / Enterprise",
+    "subtitle": "Serving homes and businesses across Uttar Pradesh, with a primary focus on Varanasi and nearby areas.",
+    "serviceAreaNotice": "Service Area: Varanasi & Surrounding Districts, Uttar Pradesh",
+    "serviceInterestLabel": "Select Your Solar Interest",
+    "serviceTypeSuryaGhar": "PM Surya Ghar Assistance",
+    "serviceTypeResidential": "Residential Rooftop Solar",
+    "serviceTypeCommercial": "Commercial Solar",
+    "serviceTypeHardware": "Hardware Wholesale",
     "fullNameLabel": "Full Name",
     "fullNamePlaceholder": "Jane Doe",
-    "emailLabel": "Email Address",
-    "emailPlaceholder": "jane@example.com",
-    "billLabel": "Estimated Monthly Electricity Bill ($)",
-    "billPlaceholder": "$250 / month",
-    "submitButton": "Generate Custom System Quote",
+    "phoneLabel": "Phone / WhatsApp Number",
+    "phonePlaceholder": "+91 98765 43210",
+    "serviceStateLabel": "Service State",
+    "serviceStateValue": "Uttar Pradesh (Only)",
+    "serviceCityLabel": "City / District",
+    "cityVaranasi": "Varanasi (Primary Service Location)",
+    "cityNearbyUP": "Nearby UP District (Chandauli, Mirzapur, Jaunpur, Ghazipur)",
+    "billLabel": "Estimated Monthly Electricity Bill (₹)",
+    "billPlaceholder": "₹3,500 / month",
+    "submitButton": "Request Consultation & Assistance",
     "submittedTitle": "Request Received",
-    "submittedDesc": "Our clean energy engineering team will review your requirements and provide a tailored system quote within 24 hours.",
+    "submittedDesc": "Our clean energy team in Varanasi will review your electricity details and contact you within 24 hours to assist with your solar requirements.",
     "closeButton": "Close Window"
   },
   "language": {
