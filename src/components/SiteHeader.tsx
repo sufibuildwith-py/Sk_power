@@ -14,8 +14,8 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenQuote, onOpenMobil
 
   const navItems = [
     { label: t('nav.home'), href: '#hero' },
-    { label: t('nav.products'), href: '#products' },
     { label: t('nav.solutions'), href: '#solutions' },
+    { label: t('pmSuryaGhar.nav'), href: '#pm-surya-ghar' },
     { label: t('nav.about'), href: '#about' },
     { label: t('nav.contact'), href: '#contact' },
   ];

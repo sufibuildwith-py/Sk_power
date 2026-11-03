@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DraggableCardTrack } from './DraggableCardTrack';
 import {
   SunMedium,
   ExternalLink,
@@ -113,11 +114,11 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         {/* Right Column (40% on desktop): Authentic PM Modi Photograph Frame */}
         <div className="lg:col-span-5 relative">
-          {/* Subtle Ambient Backlight */}
-          <div className="absolute -inset-4 bg-gradient-to-tr from-solar-amber/20 to-transparent rounded-3xl blur-2xl pointer-events-none" />
+          {/* Subtle Ambient Sky-Blue & Amber Backlight */}
+          <div className="absolute -inset-4 bg-gradient-to-tr from-[#c8e2f4]/40 via-solar-amber/15 to-transparent rounded-3xl blur-2xl pointer-events-none" />
 
-          <div className="relative bg-white/90 rounded-3xl p-4 sm:p-5 border border-solar-charcoal/10 shadow-xl overflow-hidden group">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#edf2f5]">
+          <div className="relative glass-frame rounded-3xl p-4 sm:p-5 overflow-hidden group">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#edf2f5] border border-white/60 shadow-inner">
               <picture>
                 <source srcSet="/pm-surya-ghar/pm-modi-initiative.webp" type="image/webp" />
                 <img
@@ -127,71 +128,81 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
                   loading="lazy"
                 />
               </picture>
-              <div className="absolute inset-0 bg-gradient-to-t from-solar-ink/75 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-solar-ink/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-3 right-3 text-solar-ivory">
-                <span className="inline-block px-2.5 py-0.5 rounded-full bg-solar-amber text-solar-ink text-[10px] font-bold tracking-wider uppercase mb-1">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-solar-amber text-solar-ink text-[10px] font-bold tracking-wider uppercase mb-1 shadow-sm">
                   National Mission
                 </span>
-                <p className="text-[11px] sm:text-xs font-medium leading-snug drop-shadow-sm">
+                <p className="text-[11px] sm:text-xs font-medium leading-snug drop-shadow-sm text-solar-ivory/95">
                   {t('pmSuryaGhar.modiCaption')}
                 </p>
               </div>
             </div>
 
-            <div className="mt-3.5 px-1 flex items-center justify-between text-[10px] sm:text-[11px] text-solar-charcoal/60">
+            <div className="mt-3.5 px-1 flex items-center justify-between text-[10px] sm:text-[11px] text-solar-charcoal/70">
               <span className="flex items-center gap-1.5 font-medium">
                 <Award className="w-3.5 h-3.5 text-solar-amber" />
                 {t('pmSuryaGhar.modiSource')}
               </span>
-              <span>13 Feb 2024</span>
+              <span className="font-mono text-solar-charcoal/50">13 Feb 2024</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* =========================================================================
-          CHAPTER 02 — THE NUMBERS THAT MATTER (Left-to-Right Staggered Statistics)
+          CHAPTER 02 — THE NUMBERS THAT MATTER
+          ROW 02: RIGHT TO LEFT Draggable Glass Track
          ========================================================================= */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 sm:mb-28">
-        {[
-          {
-            icon: Users,
-            val: t('pmSuryaGhar.stats.households.value'),
-            lbl: t('pmSuryaGhar.stats.households.label'),
-            desc: t('pmSuryaGhar.stats.households.desc'),
-          },
-          {
-            icon: SunMedium,
-            val: t('pmSuryaGhar.stats.benefit.value'),
-            lbl: t('pmSuryaGhar.stats.benefit.label'),
-            desc: t('pmSuryaGhar.stats.benefit.desc'),
-          },
-          {
-            icon: Coins,
-            val: t('pmSuryaGhar.stats.subsidy.value'),
-            lbl: t('pmSuryaGhar.stats.subsidy.label'),
-            desc: t('pmSuryaGhar.stats.subsidy.desc'),
-          },
-        ].map((stat, idx) => (
-          <div
-            key={idx}
-            className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-solar-amber/5 rounded-full blur-2xl pointer-events-none group-hover:bg-solar-amber/10 transition-colors" />
-            <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-              <stat.icon className="w-5 h-5 text-solar-amber" />
+      <div className="mb-20 sm:mb-28 overflow-hidden">
+        <DraggableCardTrack
+          direction="right-to-left"
+          speed={22}
+          trackClassName="gap-6 pr-6"
+          ariaLabel="PM Surya Ghar Key Statistics Track"
+        >
+          {[
+            {
+              icon: Users,
+              val: t('pmSuryaGhar.stats.households.value'),
+              lbl: t('pmSuryaGhar.stats.households.label'),
+              desc: t('pmSuryaGhar.stats.households.desc'),
+            },
+            {
+              icon: SunMedium,
+              val: t('pmSuryaGhar.stats.benefit.value'),
+              lbl: t('pmSuryaGhar.stats.benefit.label'),
+              desc: t('pmSuryaGhar.stats.benefit.desc'),
+            },
+            {
+              icon: Coins,
+              val: t('pmSuryaGhar.stats.subsidy.value'),
+              lbl: t('pmSuryaGhar.stats.subsidy.label'),
+              desc: t('pmSuryaGhar.stats.subsidy.desc'),
+            },
+          ].map((stat, idx) => (
+            <div
+              key={idx}
+              className="glass-card p-8 rounded-3xl w-[300px] sm:w-[360px] md:w-[390px] flex flex-col justify-between group select-none relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-solar-amber/15 transition-colors" />
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <stat.icon className="w-5 h-5 text-solar-amber" />
+                </div>
+                <div className="font-display text-4xl sm:text-5xl font-semibold text-solar-ink mb-2.5 tracking-tight">
+                  {stat.val}
+                </div>
+                <div className="text-sm font-semibold text-solar-charcoal/90 mb-2">
+                  {stat.lbl}
+                </div>
+              </div>
+              <p className="text-xs text-solar-charcoal/75 leading-relaxed pt-3 border-t border-solar-charcoal/10">
+                {stat.desc}
+              </p>
             </div>
-            <div className="font-display text-4xl sm:text-5xl font-semibold text-solar-ink mb-2 tracking-tight">
-              {stat.val}
-            </div>
-            <div className="text-sm font-semibold text-solar-charcoal/90 mb-2">
-              {stat.lbl}
-            </div>
-            <p className="text-xs text-solar-charcoal/70 leading-relaxed">
-              {stat.desc}
-            </p>
-          </div>
-        ))}
+          ))}
+        </DraggableCardTrack>
       </div>
 
       {/* =========================================================================
@@ -236,14 +247,14 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
 
       {/* =========================================================================
-          CHAPTER 07 — DOCUMENTS & PREPARATION (Compact Two-Column Checklist)
+          CHAPTER 07 — DOCUMENTS & PREPARATION (Compact Two-Column Glass Checklist)
          ========================================================================= */}
-      <div className="bg-white/80 rounded-3xl p-6 sm:p-10 border border-solar-charcoal/10 shadow-sm mb-20 sm:mb-28">
+      <div className="glass-panel rounded-3xl p-6 sm:p-10 mb-20 sm:mb-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Heading & Disclaimer */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
+              <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
               <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
                 {t('pmSuryaGhar.documents.eyebrow')}
               </span>
@@ -254,7 +265,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
               {t('pmSuryaGhar.documents.desc')}
             </p>
-            <div className="p-3.5 rounded-xl bg-solar-ink/5 border border-solar-charcoal/10 flex items-start gap-2.5 text-xs text-solar-charcoal/70">
+            <div className="glass-card-subtle p-4 rounded-2xl flex items-start gap-2.5 text-xs text-solar-charcoal/80">
               <Info className="w-4 h-4 text-solar-amber shrink-0 mt-0.5" />
               <span>{t('pmSuryaGhar.documents.note')}</span>
             </div>
@@ -268,10 +279,10 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
               return (
                 <div
                   key={idx}
-                  className="p-4 rounded-2xl bg-[#F7F5EF] border border-solar-charcoal/10 flex items-start gap-3 hover:bg-white transition-colors"
+                  className="glass-card-subtle p-4 sm:p-5 rounded-2xl flex items-start gap-3.5 hover:bg-white/90 transition-all"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-solar-ink/5 flex items-center justify-center text-solar-ink shrink-0 mt-0.5">
-                    <IconComp className="w-3.5 h-3.5 text-solar-amber" />
+                  <div className="w-8 h-8 rounded-xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber shrink-0 mt-0.5">
+                    <IconComp className="w-4 h-4 text-solar-amber" />
                   </div>
                   <div>
                     <h5 className="font-display font-semibold text-xs sm:text-sm text-solar-ink mb-1">
@@ -290,11 +301,12 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
       {/* =========================================================================
           SUSTAINABLE ADVANTAGES / ROOFTOP SOLAR BENEFITS
+          ROW 03: LEFT TO RIGHT Draggable Glass Track
          ========================================================================= */}
-      <div className="mb-20 sm:mb-28">
+      <div className="mb-20 sm:mb-28 overflow-hidden">
         <div className="max-w-xl mb-10">
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
+            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
               {t('pmSuryaGhar.benefits.eyebrow')}
             </span>
@@ -307,26 +319,31 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <DraggableCardTrack
+          direction="left-to-right"
+          speed={24}
+          trackClassName="gap-5 pr-5"
+          ariaLabel="Residential Rooftop Solar Advantages Track"
+        >
           {benefitItems.map((benefit, idx) => (
             <div
               key={idx}
-              className="bg-white/80 p-5 rounded-2xl border border-solar-charcoal/10 flex flex-col justify-between hover:shadow-sm transition-shadow"
+              className="glass-card p-6 sm:p-7 rounded-3xl w-[260px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none"
             >
               <div>
-                <div className="w-8 h-8 rounded-xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-4">
-                  <SunMedium className="w-4 h-4 text-solar-amber" />
+                <div className="w-10 h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 group-hover:scale-105 transition-transform">
+                  <SunMedium className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display font-semibold text-sm text-solar-ink mb-2">
+                <h4 className="font-display font-semibold text-sm sm:text-base text-solar-ink mb-2.5">
                   {benefit.title}
                 </h4>
-                <p className="text-xs text-solar-charcoal/75 leading-relaxed">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>
             </div>
           ))}
-        </div>
+        </DraggableCardTrack>
 
         <p className="mt-4 text-[11px] text-solar-charcoal/60">
           {t('pmSuryaGhar.benefits.disclaimer')}
@@ -334,13 +351,12 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
       </div>
 
       {/* =========================================================================
-          CHAPTER 08 — FREQUENTLY ASKED QUESTIONS
-          (PRESERVED 100% UNCHANGED PER EXPLICIT MANDATE)
+          CHAPTER 08 — FREQUENTLY ASKED QUESTIONS (Frosted Glass Panel System)
          ========================================================================= */}
-      <div className="bg-white/80 rounded-3xl p-6 sm:p-10 border border-solar-charcoal/10 shadow-sm mb-20 sm:mb-28">
-        <div className="max-w-xl mb-8">
+      <div className="glass-panel rounded-3xl p-6 sm:p-10 md:p-12 mb-20 sm:mb-28">
+        <div className="max-w-xl mb-10">
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
+            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
               {t('pmSuryaGhar.faqs.eyebrow')}
             </span>
@@ -353,27 +369,34 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           </p>
         </div>
 
-        <div className="divide-y divide-solar-charcoal/10">
+        <div className="space-y-3">
           {faqItems.map((item, idx) => {
             const isOpen = openFaqIndex === idx;
             return (
-              <div key={idx} className="py-4 sm:py-5">
+              <div
+                key={idx}
+                className={`glass-card-subtle rounded-2xl overflow-hidden transition-all duration-300 ${
+                  isOpen
+                    ? 'bg-white/90 shadow-md border-solar-amber/40 ring-1 ring-solar-amber/20'
+                    : 'hover:bg-white/75'
+                }`}
+              >
                 <button
                   type="button"
                   onClick={() => toggleFaq(idx)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
-                  className="w-full flex items-center justify-between text-left gap-4 focus:outline-none group"
+                  className="w-full flex items-center justify-between text-left gap-4 p-5 sm:p-6 focus:outline-none group"
                 >
                   <span className="font-display font-medium text-sm sm:text-base text-solar-ink group-hover:text-solar-charcoal transition-colors">
                     {idx + 1}. {item.q}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center bg-solar-ink/5 text-solar-charcoal shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-solar-amber/20 text-solar-ink' : ''
+                    className={`w-8 h-8 rounded-full flex items-center justify-center bg-solar-amber/10 text-solar-charcoal shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 bg-solar-amber/25 text-solar-ink' : ''
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4 text-solar-amber" />
                   </div>
                 </button>
 
@@ -384,11 +407,11 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                      transition={{ duration: 0.28, ease: 'easeOut' }}
                       className="overflow-hidden"
                     >
                       <p
-                        className={`pt-3 text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed pr-8 ${
+                        className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
                           isHindi ? 'leading-[1.7]' : ''
                         }`}
                       >
@@ -405,11 +428,12 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
       {/* =========================================================================
           CHAPTER 09 — HOW SK SOLAR WALA CAN HELP & FINAL CTA
+          ROW 04: RIGHT TO LEFT Draggable Glass Track
          ========================================================================= */}
-      <div className="mb-20 sm:mb-28">
+      <div className="mb-20 sm:mb-28 overflow-hidden">
         <div className="max-w-2xl mb-8">
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
+            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-solar-charcoal/70">
               {t('pmSuryaGhar.services.eyebrow')}
             </span>
@@ -447,76 +471,94 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* Service 1: Consultation */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <Compass className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h4 className="font-display text-lg font-medium text-solar-ink mb-2">
-                {t('pmSuryaGhar.services.consultation.title')}
-              </h4>
-              <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
-                {t('pmSuryaGhar.services.consultation.desc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left"
+        {/* ROW 04: RIGHT TO LEFT Draggable Glass Track */}
+        <DraggableCardTrack
+          direction="right-to-left"
+          speed={22}
+          trackClassName="gap-6 pr-6"
+          ariaLabel="SK SOLAR WALA Services Track"
+          className="mb-8"
+        >
+          {[
+            /* Service 1: Consultation */
+            <div
+              key="srv-consult"
+              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
             >
-              <span>{t('solutions.residentialCTA')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <Compass className="w-5 h-5 text-solar-amber" />
+                </div>
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                  {t('pmSuryaGhar.services.consultation.title')}
+                </h4>
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                  {t('pmSuryaGhar.services.consultation.desc')}
+                </p>
+              </div>
+              <button
+                onClick={onOpenQuote}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
+              >
+                <span>{t('solutions.residentialCTA')}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>,
 
-          {/* Service 2: Selection */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <Layers className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h4 className="font-display text-lg font-medium text-solar-ink mb-2">
-                {t('pmSuryaGhar.services.selection.title')}
-              </h4>
-              <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
-                {t('pmSuryaGhar.services.selection.desc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left"
+            /* Service 2: Selection */
+            <div
+              key="srv-select"
+              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
             >
-              <span>{t('products.inquireSpec')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <Layers className="w-5 h-5 text-solar-amber" />
+                </div>
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                  {t('pmSuryaGhar.services.selection.title')}
+                </h4>
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                  {t('pmSuryaGhar.services.selection.desc')}
+                </p>
+              </div>
+              <button
+                onClick={onOpenQuote}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
+              >
+                <span>{t('products.inquireSpec')}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>,
 
-          {/* Service 3: Installation Assistance */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg flex flex-col justify-between group">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <Wrench className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h4 className="font-display text-lg font-medium text-solar-ink mb-2">
-                {t('pmSuryaGhar.services.assistance.title')}
-              </h4>
-              <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed mb-6">
-                {t('pmSuryaGhar.services.assistance.desc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left"
+            /* Service 3: Installation Assistance */
+            <div
+              key="srv-assist"
+              className="glass-card p-8 rounded-3xl w-[320px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
             >
-              <span>{t('footer.requestQuote')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <Wrench className="w-5 h-5 text-solar-amber" />
+                </div>
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
+                  {t('pmSuryaGhar.services.assistance.title')}
+                </h4>
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
+                  {t('pmSuryaGhar.services.assistance.desc')}
+                </p>
+              </div>
+              <button
+                onClick={onOpenQuote}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
+              >
+                <span>{t('footer.requestQuote')}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>,
+          ]}
+        </DraggableCardTrack>
 
         {/* Ethical Transparency Box */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-solar-ink/5 border border-solar-charcoal/10 flex items-start gap-3 text-xs text-solar-charcoal/75">
+        <div className="glass-card-subtle p-5 rounded-2xl flex items-start gap-3.5 text-xs text-solar-charcoal/80">
           <ShieldCheck className="w-5 h-5 text-solar-amber shrink-0 mt-0.5" />
           <p className="leading-relaxed">
             {t('pmSuryaGhar.services.ethicalDisclaimer')}

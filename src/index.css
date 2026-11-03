@@ -60,6 +60,80 @@ html[lang="hi"] .font-display {
   box-shadow: 0 10px 30px -4px rgba(23, 42, 54, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
 }
 
+/* =========================================================================
+   GLOBAL SOFT SKY-BLUE GLASSMORPHISM SYSTEM (Apple-Inspired Optical Glass)
+   Translucent white with cool pale-blue tint, fine white borders,
+   subtle top edge reflections, and soft diffused ambient shadows.
+   ========================================================================= */
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82) 0%, rgba(238, 246, 252, 0.68) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 8px 32px 0 rgba(23, 42, 54, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(210, 230, 245, 0.25);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(232, 244, 252, 0.8) 100%);
+  border-color: rgba(233, 173, 89, 0.45);
+  box-shadow: 
+    0 16px 40px -4px rgba(23, 42, 54, 0.08),
+    0 0 20px 0 rgba(233, 173, 89, 0.08),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.glass-card-subtle {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.68) 0%, rgba(240, 248, 253, 0.52) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 4px 20px 0 rgba(23, 42, 54, 0.03),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-subtle:hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85) 0%, rgba(235, 246, 253, 0.68) 100%);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 10px 30px 0 rgba(23, 42, 54, 0.06),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.glass-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(240, 248, 253, 0.65) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 12px 40px 0 rgba(23, 42, 54, 0.05),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-frame {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(236, 246, 253, 0.75) 100%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 16px 48px -6px rgba(23, 42, 54, 0.09),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
 .glass-pill {
   background: rgba(247, 245, 239, 0.6);
   backdrop-filter: blur(12px);

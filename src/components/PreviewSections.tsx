@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowUpRight, SunMedium, ShieldCheck, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { PMSuryaGharSection } from './PMSuryaGharSection';
+import { DraggableCardTrack } from './DraggableCardTrack';
 
 interface PreviewSectionsProps {
   onOpenQuote: () => void;
@@ -11,40 +12,13 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
   const { t, i18n } = useTranslation();
   const isHindi = i18n.language === 'hi';
 
-  const productsList = [
-    {
-      category: t('products.panels.category'),
-      title: 'SK Alpha 450W Monocrystalline',
-      efficiency: t('products.panels.metric'),
-      desc: t('products.panels.desc'),
-    },
-    {
-      category: t('products.inverters.category'),
-      title: 'SK Matrix 10kW Smart Inverter',
-      efficiency: t('products.inverters.metric'),
-      desc: t('products.inverters.desc'),
-    },
-    {
-      category: t('products.storage.category'),
-      title: 'SK Cell Vault 15kWh LFP',
-      efficiency: t('products.storage.metric'),
-      desc: t('products.storage.desc'),
-    },
-    {
-      category: t('products.management.category'),
-      title: 'SK Energy Gateway Hub',
-      efficiency: t('products.management.metric'),
-      desc: t('products.management.desc'),
-    },
-  ];
-
   return (
     <div className="relative z-20 bg-[#F7F5EF] text-solar-charcoal">
-      {/* 1. Solutions Section */}
-      <section id="solutions" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
-        <div className="max-w-xl mb-16">
+      {/* 1. Solutions Section — ROW 01 (LEFT TO RIGHT Draggable Glass Track) */}
+      <section id="solutions" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10 overflow-hidden">
+        <div className="max-w-xl mb-12 sm:mb-16">
           <div className="flex items-center gap-2 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
+            <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
             <span className={`text-[10px] font-semibold uppercase text-solar-charcoal/70 ${
               isHindi ? 'tracking-normal font-sans' : 'tracking-wider-editorial'
             }`}>
@@ -63,136 +37,93 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {/* Solution 1 */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg group flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <SunMedium className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h3 className={`font-display text-xl font-medium text-solar-ink mb-2 ${isHindi ? 'font-sans' : ''}`}>
-                {t('solutions.residentialTitle')}
-              </h3>
-              <p className={`text-sm text-solar-charcoal/75 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
-                {t('solutions.residentialDesc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors"
-            >
-              <span>{t('solutions.residentialCTA')}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Solution 2 */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg group flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <Zap className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h3 className={`font-display text-xl font-medium text-solar-ink mb-2 ${isHindi ? 'font-sans' : ''}`}>
-                {t('solutions.commercialTitle')}
-              </h3>
-              <p className={`text-sm text-solar-charcoal/75 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
-                {t('solutions.commercialDesc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors"
-            >
-              <span>{t('solutions.commercialCTA')}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Solution 3 */}
-          <div className="bg-white/80 p-8 rounded-3xl border border-solar-charcoal/10 hover:border-solar-amber/40 transition-all hover:shadow-lg group flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-2xl bg-solar-ink/5 flex items-center justify-center text-solar-ink mb-6 group-hover:scale-105 transition-transform">
-                <ShieldCheck className="w-5 h-5 text-solar-amber" />
-              </div>
-              <h3 className={`font-display text-xl font-medium text-solar-ink mb-2 ${isHindi ? 'font-sans' : ''}`}>
-                {t('solutions.distributionTitle')}
-              </h3>
-              <p className={`text-sm text-solar-charcoal/75 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
-                {t('solutions.distributionDesc')}
-              </p>
-            </div>
-            <button
-              onClick={onOpenQuote}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors"
-            >
-              <span>{t('solutions.distributionCTA')}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Products Section */}
-      <section id="products" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-xl">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
-              <span className={`text-[10px] font-semibold uppercase text-solar-charcoal/70 ${
-                isHindi ? 'tracking-normal font-sans' : 'tracking-wider-editorial'
-              }`}>
-                {t('products.eyebrow')}
-              </span>
-            </div>
-            <h2 className={`font-display text-3xl sm:text-4xl font-normal text-solar-ink ${
-              isHindi ? 'leading-[1.28] tracking-normal font-sans' : 'tracking-tight leading-tight'
-            }`}>
-              {t('products.title')}
-            </h2>
-          </div>
-          <button
-            onClick={onOpenQuote}
-            className="self-start md:self-end px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill inline-flex items-center gap-2"
-          >
-            <span>{t('products.requestFullCatalogue')}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-solar-amber" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productsList.map((prod) => (
+        {/* ROW 01: LEFT TO RIGHT Draggable Glass Track */}
+        <DraggableCardTrack
+          direction="left-to-right"
+          speed={24}
+          trackClassName="gap-6 sm:gap-8 pr-6 sm:pr-8"
+          ariaLabel="Solar Solutions Track"
+        >
+          {[
+            /* Solution 1: Residential */
             <div
-              key={prod.title}
-              className="bg-white/60 p-6 rounded-2xl border border-solar-charcoal/10 flex flex-col justify-between hover:bg-white transition-all"
+              key="sol-residential"
+              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
             >
               <div>
-                <span className={`text-[10px] font-semibold uppercase text-solar-charcoal/60 ${
-                  isHindi ? 'tracking-normal font-sans' : 'tracking-widest'
-                }`}>
-                  {prod.category}
-                </span>
-                <h4 className="font-display text-base font-semibold text-solar-ink mt-2 mb-1">
-                  {prod.title}
-                </h4>
-                <div className="inline-block px-2 py-0.5 rounded bg-solar-amber/15 text-[11px] font-medium text-solar-ink mb-3">
-                  {prod.efficiency}
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <SunMedium className="w-5 h-5 text-solar-amber" />
                 </div>
-                <p className={`text-xs text-solar-charcoal/70 mb-4 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
-                  {prod.desc}
+                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                  {t('solutions.residentialTitle')}
+                </h3>
+                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                  {t('solutions.residentialDesc')}
                 </p>
               </div>
               <button
                 onClick={onOpenQuote}
-                className="text-xs font-semibold text-solar-ink/80 hover:text-solar-amber transition-colors text-left"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
               >
-                {t('products.inquireSpec')}
+                <span>{t('solutions.residentialCTA')}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
-            </div>
-          ))}
-        </div>
+            </div>,
+
+            /* Solution 2: Commercial */
+            <div
+              key="sol-commercial"
+              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+            >
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <Zap className="w-5 h-5 text-solar-amber" />
+                </div>
+                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                  {t('solutions.commercialTitle')}
+                </h3>
+                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                  {t('solutions.commercialDesc')}
+                </p>
+              </div>
+              <button
+                onClick={onOpenQuote}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
+              >
+                <span>{t('solutions.commercialCTA')}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </button>
+            </div>,
+
+            /* Solution 3: Distribution */
+            <div
+              key="sol-distribution"
+              className="glass-card p-8 rounded-3xl w-[310px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none"
+            >
+              <div>
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                  <ShieldCheck className="w-5 h-5 text-solar-amber" />
+                </div>
+                <h3 className={`font-display text-xl font-medium text-solar-ink mb-2.5 ${isHindi ? 'font-sans' : ''}`}>
+                  {t('solutions.distributionTitle')}
+                </h3>
+                <p className={`text-sm text-solar-charcoal/80 mb-6 ${isHindi ? 'leading-[1.65]' : 'leading-relaxed'}`}>
+                  {t('solutions.distributionDesc')}
+                </p>
+              </div>
+              <button
+                onClick={onOpenQuote}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
+              >
+                <span>{t('solutions.distributionCTA')}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </button>
+            </div>,
+          ]}
+        </DraggableCardTrack>
       </section>
 
-      {/* 3. About Section */}
+      {/* 2. About Section */}
       <section id="about" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
@@ -272,7 +203,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
           <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-medium text-solar-charcoal/80">
             <a href="#hero" className="hover:text-solar-ink transition-colors">{t('footer.topOfPage')}</a>
             <a href="#solutions" className="hover:text-solar-ink transition-colors">{t('footer.solutions')}</a>
-            <a href="#products" className="hover:text-solar-ink transition-colors">{t('footer.catalogue')}</a>
+            <a href="#about" className="hover:text-solar-ink transition-colors">{t('nav.about')}</a>
             <a href="#pm-surya-ghar" className="hover:text-solar-ink transition-colors">{t('footer.pmSuryaGhar')}</a>
             <button onClick={onOpenQuote} className="hover:text-solar-amber font-semibold transition-colors">
               {t('footer.requestQuote')}
