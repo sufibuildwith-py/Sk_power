@@ -3,9 +3,12 @@ import { ArrowUpRight, SunMedium, ShieldCheck, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { PMSuryaGharSection } from './PMSuryaGharSection';
 import { DraggableCardTrack } from './DraggableCardTrack';
+import { SolarSavingsCalculator } from './SolarSavingsCalculator';
+
+import { QuotePrefillData } from './QuoteModal';
 
 interface PreviewSectionsProps {
-  onOpenQuote: () => void;
+  onOpenQuote: (prefill?: QuotePrefillData) => void;
 }
 
 export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote }) => {
@@ -65,7 +68,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
                 </p>
               </div>
               <button
-                onClick={onOpenQuote}
+                onClick={() => onOpenQuote({ serviceInterest: 'residential', city: 'varanasi' })}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
               >
                 <span>{t('solutions.residentialCTA')}</span>
@@ -90,7 +93,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
                 </p>
               </div>
               <button
-                onClick={onOpenQuote}
+                onClick={() => onOpenQuote({ serviceInterest: 'commercial', city: 'varanasi' })}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
               >
                 <span>{t('solutions.commercialCTA')}</span>
@@ -115,7 +118,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
                 </p>
               </div>
               <button
-                onClick={onOpenQuote}
+                onClick={() => onOpenQuote({ serviceInterest: 'hardware', city: 'varanasi' })}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-solar-ink group-hover:text-solar-amber transition-colors text-left pt-2 border-t border-solar-charcoal/10"
               >
                 <span>{t('solutions.distributionCTA')}</span>
@@ -128,7 +131,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
 
       {/* 2. About Section */}
       <section id="about" className="w-full py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-solar-amber" />
@@ -167,18 +170,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
             </div>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden shadow-xl border border-solar-charcoal/10 aspect-video">
-            <img
-              src="/hero-poster.jpg"
-              alt="SK SOLAR WALA Architectural Integration"
-              className="w-full h-full object-cover object-[60%_40%]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-solar-ink/60 via-transparent to-transparent flex items-end p-8">
-              <p className={`text-xs sm:text-sm text-solar-ivory font-light max-w-sm ${isHindi ? 'leading-[1.6]' : ''}`}>
-                {t('about.imageCaption')}
-              </p>
-            </div>
-          </div>
+          <SolarSavingsCalculator onOpenQuote={onOpenQuote} />
         </div>
       </section>
 
@@ -208,7 +200,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
             <a href="#solutions" className="hover:text-solar-ink transition-colors">{t('footer.solutions')}</a>
             <a href="#about" className="hover:text-solar-ink transition-colors">{t('nav.about')}</a>
             <a href="#pm-surya-ghar" className="hover:text-solar-ink transition-colors">{t('footer.pmSuryaGhar')}</a>
-            <button onClick={onOpenQuote} className="hover:text-solar-amber font-semibold transition-colors">
+            <button onClick={() => onOpenQuote()} className="hover:text-solar-amber font-semibold transition-colors">
               {t('footer.requestQuote')}
             </button>
           </div>

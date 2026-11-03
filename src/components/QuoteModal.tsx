@@ -3,16 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, MapPin, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+export interface QuotePrefillData {
+  serviceInterest?: string;
+  city?: string;
+  bill?: string;
+  notes?: string;
+}
+
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
+  prefill?: QuotePrefillData;
 }
 
-export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
+export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill }) => {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [serviceInterest, setServiceInterest] = useState<string>('pmsuryaghar');
   const [selectedCity, setSelectedCity] = useState<string>('varanasi');
+  const [bill, setBill] = useState<string>('');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -21,6 +30,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+      if (prefill?.serviceInterest) setServiceInterest(prefill.serviceInterest);
+      if (prefill?.city) setSelectedCity(prefill.city);
+      if (prefill?.bill) setBill(prefill.bill);
     } else {
       document.body.style.overflow = '';
       setSubmitted(false);
@@ -29,7 +41,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, prefill]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,6 +245,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                     </label>
                     <input
                       type="text"
+                      value={bill}
+                      onChange={(e) => setBill(e.target.value)}
                       placeholder={t('quoteModal.billPlaceholder')}
                       className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
                     />

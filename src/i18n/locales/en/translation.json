@@ -77,6 +77,144 @@
     "stat3Label": "Emissions Compromise",
     "imageCaption": "Photovoltaic technology harmonized with modern architectural living."
   },
+  "calculator": {
+    "badge": "UP ROOFTOP SOLAR SIZING & SAVINGS ESTIMATOR",
+    "title": "SK Solar Savings Calculator",
+    "subtitle": "Precision rooftop solar sizing, generation & PM Surya Ghar financial model for Uttar Pradesh.",
+    "liveEstimated": "Estimated Capacity",
+    "liveSavings": "Est. Year 1 Savings",
+    "liveSubsidy": "PM Surya Ghar",
+    "mode": {
+      "consumptionTitle": "Monthly Consumption",
+      "consumptionDesc": "Size by your actual kWh units (recommended)",
+      "billTitle": "Monthly Bill Amount",
+      "billDesc": "Estimate from your current electricity bill (₹)",
+      "areaTitle": "Available Roof Area",
+      "areaDesc": "Size to maximize available shadow-free roof"
+    },
+    "step1": {
+      "heading": "Step 1: How would you like to calculate?",
+      "subheading": "Select your preferred calculation approach to begin system sizing.",
+      "monthlyUnitsLabel": "Monthly Metered Consumption",
+      "units": "kWh / Units",
+      "consumptionHint": "Find units consumed on your DISCOM electricity bill.",
+      "billLabel": "Average Monthly Electricity Bill",
+      "billHint": "Total billed amount including energy & fixed charges.",
+      "billEstimateNote": "Estimated ~{{units}} kWh/month based on UP slab tariff ₹{{rate}}/unit.",
+      "roofAreaLabel": "Available Shadow-Free Rooftop Area",
+      "sqft": "sq ft",
+      "areaHint": "Net usable rooftop area available for solar panel installation."
+    },
+    "step2": {
+      "heading": "Step 2: Service Location & Category",
+      "subheading": "SK SOLAR WALA serves Uttar Pradesh exclusively. Select your district and consumer category.",
+      "stateLabel": "Operating State",
+      "stateNotice": "SK SOLAR WALA operates exclusively within Uttar Pradesh, centered on Varanasi and surrounding districts.",
+      "districtLabel": "Select District (Uttar Pradesh)",
+      "categoryLabel": "Consumer Category",
+      "subsidyNoticeTitle": "PM Surya Ghar Subsidy Eligible",
+      "subsidyNoticeDesc": "Residential installations in UP receive up to ₹78,000 Central CFA + ₹30,000 UP State subsidy (total up to ₹1,08,000 for 3 kW+ systems).",
+      "commercialNoticeTitle": "Commercial & Industrial Tariff Note",
+      "commercialNoticeDesc": "Commercial & industrial rooftop solar systems are not eligible for PM Surya Ghar capital subsidy, but qualify for 40% accelerated depreciation (tax benefit) and substantial tariff savings."
+    },
+    "category": {
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "industrial": "Industrial"
+    },
+    "categoryDesc": {
+      "residential": "Homes, villas, residential apartments & housing societies",
+      "commercial": "Offices, retail shops, clinics, showrooms & hotels",
+      "industrial": "Manufacturing, warehouses, processing & cold storage"
+    },
+    "step3": {
+      "heading": "Step 3: Electricity Tariff & Connection",
+      "subheading": "Configure your DISCOM tariff slab to calculate precise bill offsets.",
+      "tariffLabel": "Average Tariff Rate",
+      "tariffHint": "Average per-unit rate from your DISCOM bill (e.g. ₹7.50/unit).",
+      "fixedChargesLabel": "Monthly Fixed Charges",
+      "fixedChargesHint": "Sanctioned load / meter fixed charges on your bill.",
+      "sanctionedLoadLabel": "Sanctioned Grid Load",
+      "sanctionedLoadHint": "Total sanctioned electrical load (kW) per DISCOM connection.",
+      "netMeteringTitle": "UPPCL Net Metering Policy",
+      "netMeteringDesc": "Solar generation up to sanctioned load feeds directly into your premises. Excess daytime generation exports to the grid and offsets evening consumption under net metering regulations."
+    },
+    "step4": {
+      "heading": "Step 4: Rooftop Space & Conditions",
+      "subheading": "Specify available shadow-free area and roof structure characteristics.",
+      "areaLabel": "Usable Rooftop Area",
+      "areaHint": "Estimated usable space for panel mounting.",
+      "helperTitle": "Need help calculating roof area?",
+      "roofTypeLabel": "Rooftop Structure Type",
+      "orientationLabel": "Roof Orientation",
+      "shadingLabel": "Daytime Shading Condition"
+    },
+    "step5": {
+      "heading": "Step 5: System Preferences & Technology",
+      "subheading": "Choose target energy offset, module wattage, and inverter configuration.",
+      "offsetLabel": "Target Solar Offset Percentage",
+      "moduleWattageLabel": "PV Module Wattage",
+      "systemTypeLabel": "Inverter & System Architecture",
+      "onGridDesc": "Grid-tied net-metered system. Lowest upfront cost, highest ROI, zero battery maintenance.",
+      "hybridDesc": "Grid-tied with lithium battery storage backup. Seamless power during grid outages.",
+      "offGridDesc": "Autonomous battery-backed system independent of DISCOM grid power."
+    },
+    "report": {
+      "eyebrow": "TECHNO-COMMERCIAL SOLAR REPORT",
+      "title": "Comprehensive Solar Sizing & Savings Analysis",
+      "generatedOn": "Prepared on {{date}} for {{district}}, Uttar Pradesh",
+      "editInputs": "Edit Parameters",
+      "shareWhatsApp": "Share on WhatsApp",
+      "downloadPdf": "Print / Download PDF",
+      "recommendedSystem": "Recommended Solar System",
+      "annualGen": "Est. Annual Generation",
+      "annualSavings": "Est. Year 1 Savings",
+      "netCost": "Net Project Cost",
+      "payback": "Simple Payback",
+      "costSubsidyTitle": "Investment, Subsidies & Net Outflow",
+      "generationChartTitle": "12-Month Seasonal Generation Profile (UP Climate)",
+      "tableTitle": "25-Year Cumulative Financial & Generation Outlook",
+      "environmentalTitle": "Lifetime Environmental Offsets",
+      "bomTitle": "Indicative Equipment Bill of Materials (BOM)",
+      "ctaTitle": "Ready to install rooftop solar in {{district}}?",
+      "ctaButton": "Get Detailed Solar Quote"
+    },
+    "actions": {
+      "reset": "Reset",
+      "back": "Back",
+      "continue": "Continue",
+      "calculate": "Calculate Solar System",
+      "calculateReport": "Calculate & View Report",
+      "editParameters": "Edit Parameters",
+      "openQuote": "Get Detailed Solar Quote",
+      "explore": "Explore Solar Rooftop"
+    },
+    "inputs": {
+      "consumptionLabel": "Monthly Metered Consumption",
+      "consumptionUnit": "kWh / Units",
+      "consumptionPlaceholder": "e.g. 540",
+      "consumptionHint": "Your current monthly consumption from your electricity meter",
+      "rateLabel": "Current Electricity Rate",
+      "ratePrefix": "₹",
+      "rateUnit": "per unit",
+      "ratePlaceholder": "8",
+      "rateNote": "Enter the per-unit rate from your latest electricity bill."
+    },
+    "assumption": {
+      "title": "Estimated Solar Generation",
+      "value": "300 units / month",
+      "note": "Illustrative average; actual generation depends on installed system capacity and site conditions."
+    },
+    "results": {
+      "monthlySavingsLabel": "Your Estimated Monthly Savings",
+      "yearlySavingsLabel": "Your Estimated Yearly Savings",
+      "utilisedLabel": "Solar Units Utilised",
+      "gridLabel": "Remaining Grid Consumption",
+      "generationLabel": "Estimated Solar Generation",
+      "unitsSuffix": "units"
+    },
+    "disclaimer": "These figures are indicative engineering estimates modeled on Eastern UP solar irradiance (~1,450 kWh/kWp/year), 0.6% annual module degradation, and UPPCL net-metering regulations. Actual generation and savings vary with seasonal weather, site shading, tilt angle, and DISCOM approval."
+  },
   "footer": {
     "tagline": "The power of the sun, within your hands.",
     "topOfPage": "Top of Page",

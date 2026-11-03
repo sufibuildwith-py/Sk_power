@@ -7,14 +7,20 @@ import { useGSAP } from '@gsap/react';
 import { SiteHeader } from './components/SiteHeader';
 import { HeroSection } from './components/HeroSection';
 import { MobileNavigation } from './components/MobileNavigation';
-import { QuoteModal } from './components/QuoteModal';
+import { QuoteModal, QuotePrefillData } from './components/QuoteModal';
 import { PreviewSections } from './components/PreviewSections';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const App: React.FC = () => {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [quotePrefill, setQuotePrefill] = useState<QuotePrefillData | undefined>();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  const handleOpenQuote = (prefill?: QuotePrefillData) => {
+    setQuotePrefill(prefill);
+    setIsQuoteOpen(true);
+  };
 
   // Initialize Lenis smooth scroll for desktop performance
   useEffect(() => {
@@ -78,7 +84,7 @@ export const App: React.FC = () => {
 
         {/* Supporting sections for solutions, catalogue & contact */}
         <PreviewSections
-          onOpenQuote={() => setIsQuoteOpen(true)}
+          onOpenQuote={handleOpenQuote}
         />
       </main>
 
@@ -86,13 +92,14 @@ export const App: React.FC = () => {
       <MobileNavigation
         isOpen={isMobileNavOpen}
         onClose={() => setIsMobileNavOpen(false)}
-        onOpenQuote={() => setIsQuoteOpen(true)}
+        onOpenQuote={() => handleOpenQuote()}
       />
 
       {/* Request Quote Modal */}
       <QuoteModal
         isOpen={isQuoteOpen}
         onClose={() => setIsQuoteOpen(false)}
+        prefill={quotePrefill}
       />
     </div>
   );
