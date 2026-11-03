@@ -158,8 +158,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="right-to-left"
-          speed={20}
-          trackClassName="gap-4 sm:gap-6 pr-6"
+          trackClassName="gap-4 sm:gap-6"
           ariaLabel="PM Surya Ghar Key Statistics Track"
         >
           {[
@@ -330,8 +329,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="left-to-right"
-          speed={22}
-          trackClassName="gap-4 sm:gap-5 pr-5"
+          trackClassName="gap-4 sm:gap-5 md:gap-6"
           ariaLabel="Residential Rooftop Solar Advantages Track"
         >
           {benefitItems.map((benefit, idx) => (
@@ -493,8 +491,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
         {/* ROW 04: RIGHT TO LEFT Draggable Glass Track */}
         <DraggableCardTrack
           direction="right-to-left"
-          speed={20}
-          trackClassName="gap-4 sm:gap-6 md:gap-8 pr-6"
+          trackClassName="gap-4 sm:gap-6 md:gap-8"
           ariaLabel="SK SOLAR WALA Services Track"
           className="mb-8"
         >

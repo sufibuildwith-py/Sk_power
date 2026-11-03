@@ -44,8 +44,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
         {/* ROW 01: LEFT TO RIGHT Draggable Glass Track */}
         <DraggableCardTrack
           direction="left-to-right"
-          speed={22}
-          trackClassName="gap-4 sm:gap-6 md:gap-8 pr-6 sm:pr-8"
+          trackClassName="gap-4 sm:gap-6 md:gap-8"
           ariaLabel="Solar Solutions Track"
         >
           {[
