@@ -158,7 +158,8 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="right-to-left"
-          trackClassName="gap-3.5 sm:gap-6 pr-6"
+          speed={20}
+          trackClassName="gap-4 sm:gap-6 pr-6"
           ariaLabel="PM Surya Ghar Key Statistics Track"
         >
           {[
@@ -183,21 +184,21 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="glass-card p-6 sm:p-8 rounded-3xl w-[78vw] min-w-[260px] max-w-[320px] sm:w-[340px] md:w-[380px] flex flex-col justify-between group select-none relative overflow-hidden"
+              className="glass-card p-7 sm:p-8 rounded-3xl w-[78vw] min-w-[260px] max-w-[340px] sm:w-[350px] md:w-[380px] flex flex-col justify-between group select-none relative overflow-hidden shrink-0"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-solar-amber/15 transition-colors" />
               <div>
-                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
                   <stat.icon className="w-5 h-5 text-solar-amber" />
                 </div>
-                <div className="font-display text-3xl sm:text-5xl font-semibold text-solar-ink mb-2 tracking-tight">
+                <div className="font-display text-4xl sm:text-5xl font-semibold text-solar-ink mb-2.5 tracking-tight">
                   {stat.val}
                 </div>
-                <div className="text-xs sm:text-sm font-semibold text-solar-charcoal/90 mb-2">
+                <div className="text-sm font-semibold text-solar-charcoal/90 mb-2">
                   {stat.lbl}
                 </div>
               </div>
-              <p className="text-xs text-solar-charcoal/75 leading-relaxed pt-3 border-t border-solar-charcoal/10">
+              <p className="text-xs sm:text-sm text-solar-charcoal/75 leading-relaxed pt-3 border-t border-solar-charcoal/10">
                 {stat.desc}
               </p>
             </div>
@@ -329,22 +330,23 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
 
         <DraggableCardTrack
           direction="left-to-right"
-          trackClassName="gap-3.5 sm:gap-5 pr-5"
+          speed={22}
+          trackClassName="gap-4 sm:gap-5 pr-5"
           ariaLabel="Residential Rooftop Solar Advantages Track"
         >
           {benefitItems.map((benefit, idx) => (
             <div
               key={idx}
-              className="glass-card p-5 sm:p-7 rounded-3xl w-[76vw] min-w-[250px] max-w-[300px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none"
+              className="glass-card p-6 sm:p-7 rounded-3xl w-[76vw] min-w-[250px] max-w-[320px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-9 sm:w-10 h-9 sm:h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-4 sm:mb-5 group-hover:scale-105 transition-transform">
-                  <SunMedium className="w-4 sm:w-5 h-4 sm:h-5 text-solar-amber" />
+                <div className="w-10 h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 group-hover:scale-105 transition-transform">
+                  <SunMedium className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display font-semibold text-xs sm:text-sm md:text-base text-solar-ink mb-2 sm:mb-2.5">
+                <h4 className="font-display font-semibold text-sm sm:text-base text-solar-ink mb-2.5">
                   {benefit.title}
                 </h4>
-                <p className="text-xs text-solar-charcoal/80 leading-relaxed">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>
@@ -389,8 +391,8 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
                   key={idx}
                   className={`glass-card-subtle rounded-2xl overflow-hidden transition-all duration-300 ${
                     isOpen
-                      ? 'bg-white/40 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
-                      : 'hover:bg-white/30'
+                      ? 'bg-[#b6e2fa]/45 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
+                      : 'hover:bg-[#c6e8fc]/35'
                   }`}
                 >
                   <button
@@ -491,7 +493,8 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
         {/* ROW 04: RIGHT TO LEFT Draggable Glass Track */}
         <DraggableCardTrack
           direction="right-to-left"
-          trackClassName="gap-3.5 sm:gap-6 pr-6"
+          speed={20}
+          trackClassName="gap-4 sm:gap-6 md:gap-8 pr-6"
           ariaLabel="SK SOLAR WALA Services Track"
           className="mb-8"
         >
@@ -499,16 +502,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 1: Consultation */
             <div
               key="srv-consult"
-              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
+              className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
                   <Compass className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
                   {t('pmSuryaGhar.services.consultation.title')}
                 </h4>
-                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
                   {t('pmSuryaGhar.services.consultation.desc')}
                 </p>
               </div>
@@ -524,16 +527,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 2: Selection */
             <div
               key="srv-select"
-              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
+              className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
                   <Layers className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
                   {t('pmSuryaGhar.services.selection.title')}
                 </h4>
-                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
                   {t('pmSuryaGhar.services.selection.desc')}
                 </p>
               </div>
@@ -549,16 +552,16 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             /* Service 3: Installation Assistance */
             <div
               key="srv-assist"
-              className="glass-card p-6 sm:p-8 rounded-3xl w-[82vw] min-w-[270px] max-w-[340px] sm:w-[360px] md:w-[400px] flex flex-col justify-between group select-none"
+              className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 sm:mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
                   <Wrench className="w-5 h-5 text-solar-amber" />
                 </div>
-                <h4 className="font-display text-lg sm:text-xl font-medium text-solar-ink mb-2 sm:mb-2.5">
+                <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
                   {t('pmSuryaGhar.services.assistance.title')}
                 </h4>
-                <p className="text-xs sm:text-sm text-solar-charcoal/80 leading-relaxed mb-5 sm:mb-6">
+                <p className="text-sm text-solar-charcoal/80 leading-relaxed mb-6">
                   {t('pmSuryaGhar.services.assistance.desc')}
                 </p>
               </div>

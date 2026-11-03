@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 interface DraggableCardTrackProps {
   children: React.ReactNode[];
   direction?: 'left-to-right' | 'right-to-left';
-  speed?: number; // retained for interface compatibility
-  pauseOnHover?: boolean; // retained for interface compatibility
+  speed?: number; // base speed in px/s (default 22 desktop, 14 mobile)
+  pauseOnHover?: boolean;
   className?: string;
   trackClassName?: string;
   ariaLabel?: string;
@@ -13,108 +13,249 @@ interface DraggableCardTrackProps {
 export const DraggableCardTrack: React.FC<DraggableCardTrackProps> = ({
   children,
   direction = 'left-to-right',
+  speed = 22,
+  pauseOnHover = true,
   className = '',
   trackClassName = '',
-  ariaLabel = 'Interactive Card Collection',
+  ariaLabel = 'Interactive Card Carousel',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const set1Ref = useRef<HTMLDivElement>(null);
 
-  // Desktop mouse drag tracking
-  const isMouseDown = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
+  // Position and dimension refs (updated without triggering React re-renders)
+  const offsetRef = useRef<number>(0);
+  const singleWidthRef = useRef<number>(0);
+  const lastTimeRef = useRef<number>(performance.now());
+  const rafIdRef = useRef<number | null>(null);
 
-  // One-time entrance reveal using IntersectionObserver
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  // State flags
+  const isInViewportRef = useRef<boolean>(false);
+  const isHoveredRef = useRef<boolean>(false);
+  const isDraggingRef = useRef<boolean>(false);
+  const hasMovedRef = useRef<boolean>(false);
+  const startXRef = useRef<number>(0);
+  const startOffsetRef = useRef<number>(0);
+  const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prefersReducedMotionRef = useRef<boolean>(false);
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setIsVisible(true);
-      return;
-    }
+  // Check viewport device width for mobile speed tuning
+  const isMobileRef = useRef<boolean>(false);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect(); // reveal once and stay stationary
+  // Measure single set width (reads layout only on resize, never in ticker)
+  const measure = useCallback(() => {
+    if (set1Ref.current) {
+      const width = set1Ref.current.scrollWidth;
+      if (width > 0) {
+        singleWidthRef.current = width;
+        // Normalize offset within [-width, 0]
+        if (offsetRef.current > 0 || offsetRef.current < -width) {
+          offsetRef.current = offsetRef.current % width;
+          if (offsetRef.current > 0) offsetRef.current -= width;
         }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+      }
+    }
+    isMobileRef.current = window.innerWidth < 768;
   }, []);
 
-  // Desktop mouse drag handlers (pure mouse events; zero interference with mobile touch)
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!scrollRef.current) return;
-    isMouseDown.current = true;
-    startX.current = e.pageX - scrollRef.current.offsetLeft;
-    scrollLeftStart.current = scrollRef.current.scrollLeft;
+  // Main animation ticker loop
+  const tick = useCallback((time: number) => {
+    const dt = Math.min((time - lastTimeRef.current) / 1000, 0.1);
+    lastTimeRef.current = time;
+
+    const width = singleWidthRef.current;
+
+    if (
+      width > 0 &&
+      isInViewportRef.current &&
+      !isDraggingRef.current &&
+      !prefersReducedMotionRef.current &&
+      !(isHoveredRef.current && pauseOnHover)
+    ) {
+      // Responsive speed: calm ~13px/s on mobile, ~22px/s on desktop
+      const currentSpeed = isMobileRef.current ? Math.min(speed, 14) : speed;
+      const isLtoR = direction === 'left-to-right';
+
+      if (isLtoR) {
+        // Moves rightwards
+        offsetRef.current += currentSpeed * dt;
+        if (offsetRef.current >= 0) {
+          offsetRef.current -= width;
+        }
+      } else {
+        // Moves leftwards
+        offsetRef.current -= currentSpeed * dt;
+        if (offsetRef.current <= -width) {
+          offsetRef.current += width;
+        }
+      }
+
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translate3d(${offsetRef.current.toFixed(2)}px, 0, 0)`;
+      }
+    }
+
+    if (isInViewportRef.current && !prefersReducedMotionRef.current) {
+      rafIdRef.current = requestAnimationFrame(tick);
+    }
+  }, [direction, speed, pauseOnHover]);
+
+  useEffect(() => {
+    // Check reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    prefersReducedMotionRef.current = mediaQuery.matches;
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      prefersReducedMotionRef.current = e.matches;
+    };
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    // Initial width measurement
+    measure();
+    window.addEventListener('resize', measure);
+
+    // Initialize initial offset:
+    // Left-to-Right starts at -singleWidth so it smoothly advances rightward from 0
+    if (direction === 'left-to-right' && singleWidthRef.current > 0) {
+      offsetRef.current = -singleWidthRef.current;
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translate3d(${offsetRef.current.toFixed(2)}px, 0, 0)`;
+      }
+    }
+
+    // Viewport intersection observer to completely idle off-screen tracks
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isIntersecting = entries[0].isIntersecting;
+        isInViewportRef.current = isIntersecting;
+
+        if (isIntersecting && !prefersReducedMotionRef.current) {
+          lastTimeRef.current = performance.now();
+          if (!rafIdRef.current) {
+            rafIdRef.current = requestAnimationFrame(tick);
+          }
+        } else if (!isIntersecting && rafIdRef.current) {
+          cancelAnimationFrame(rafIdRef.current);
+          rafIdRef.current = null;
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaChange);
+      window.removeEventListener('resize', measure);
+      observer.disconnect();
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+    };
+  }, [measure, tick, direction]);
+
+  // Pointer drag interactions
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Only primary button
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+
+    isDraggingRef.current = true;
+    hasMovedRef.current = false;
+    startXRef.current = e.clientX;
+    startOffsetRef.current = offsetRef.current;
+
+    if (idleTimerRef.current) {
+      clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = null;
+    }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isMouseDown.current || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.2;
-    scrollRef.current.scrollLeft = scrollLeftStart.current - walk;
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+
+    const deltaX = e.clientX - startXRef.current;
+    if (Math.abs(deltaX) > 4) {
+      hasMovedRef.current = true;
+    }
+
+    const width = singleWidthRef.current;
+    let newOffset = startOffsetRef.current + deltaX;
+
+    if (width > 0) {
+      while (newOffset > 0) newOffset -= width;
+      while (newOffset < -width) newOffset += width;
+    }
+
+    offsetRef.current = newOffset;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${newOffset.toFixed(2)}px, 0, 0)`;
+    }
   };
 
-  const handleMouseUpOrLeave = () => {
-    isMouseDown.current = false;
+  const handlePointerUp = () => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+
+    // Resume smooth leisurely auto-glide after 1.2s idle
+    idleTimerRef.current = setTimeout(() => {
+      lastTimeRef.current = performance.now();
+    }, 1200);
+
+    setTimeout(() => {
+      hasMovedRef.current = false;
+    }, 80);
   };
 
-  // Directional translation offset for staggered one-time entrance reveal:
-  // Row 01 & Row 03 (left-to-right): cards reveal sliding gently from left (-20px)
-  // Row 02 & Row 04 (right-to-left): cards reveal sliding gently from right (+20px)
-  const isLtoR = direction === 'left-to-right';
-  const initialOffset = isLtoR ? -20 : 20;
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (hasMovedRef.current) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  };
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full ${className}`}
+      className={`relative w-full overflow-hidden select-none cursor-grab active:cursor-grabbing ${className}`}
       role="region"
       aria-label={ariaLabel}
+      onMouseEnter={() => {
+        isHoveredRef.current = true;
+      }}
+      onMouseLeave={() => {
+        isHoveredRef.current = false;
+        handlePointerUp();
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      onClickCapture={handleClickCapture}
+      style={{ touchAction: 'pan-y' }}
     >
-      {/* Scrollable track with native touch scrolling on mobile, CSS snap, and no-scrollbar */}
       <div
-        ref={scrollRef}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUpOrLeave}
-        onMouseLeave={handleMouseUpOrLeave}
-        className="overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-1 cursor-grab active:cursor-grabbing select-none"
+        ref={trackRef}
+        className="flex items-stretch w-max will-change-transform"
         style={{
-          WebkitOverflowScrolling: 'touch',
-          touchAction: 'pan-x pan-y',
+          transform: `translate3d(${offsetRef.current}px, 0, 0)`,
         }}
       >
-        <div className={`flex items-stretch ${trackClassName}`}>
-          {React.Children.map(children, (child, idx) => {
-            const delay = `${Math.min(idx * 0.08, 0.40)}s`;
-            return (
-              <div
-                key={idx}
-                className="snap-start shrink-0 transition-all duration-500 ease-out"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? 'translate3d(0, 0, 0)'
-                    : `translate3d(${initialOffset}px, 0, 0)`,
-                  transitionDelay: isVisible ? delay : '0s',
-                }}
-              >
-                {child}
-              </div>
-            );
-          })}
+        {/* Set 1: Primary Content */}
+        <div ref={set1Ref} className={`flex items-stretch ${trackClassName}`}>
+          {children}
+        </div>
+
+        {/* Set 2: Seamless Duplication for loop continuity (hidden from screen reader) */}
+        <div
+          aria-hidden="true"
+          className={`flex items-stretch ${trackClassName}`}
+        >
+          {React.Children.map(children, (child) => (
+            <div tabIndex={-1} className="pointer-events-auto">
+              {child}
+            </div>
+          ))}
         </div>
       </div>
     </div>

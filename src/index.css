@@ -61,71 +61,69 @@ html[lang="hi"] .font-display {
 }
 
 /* =========================================================================
-   GENUINE HIGH-TRANSPARENCY SKY-BLUE GLASS SYSTEM (NO GRADIENTS ON CARDS)
-   Uniform subtle pale sky-blue tint, authentic 20px frosted backdrop blur,
-   fine translucent white borders, delicate inner edge highlights, and soft depth.
+   DISTINCT SKY-BLUE GLASS SYSTEM (NO GRADIENTS, VISIBLY SKY BLUE & TRANSLUCENT)
+   Crisp, recognisable soft sky-blue tint, authentic 20px frosted backdrop blur,
+   fine white reflective edges, and subtle inner highlights over warm ivory.
    ========================================================================= */
 
 .glass-card {
   position: relative;
-  background: rgba(205, 232, 250, 0.22);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(135, 206, 250, 0.30);
+  backdrop-filter: blur(20px) saturate(165%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgba(220, 242, 255, 0.55);
   box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.55),
-    inset 0 -1px 1px rgba(150, 195, 225, 0.10),
-    0 8px 24px rgba(45, 75, 100, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    inset 0 1px 1px rgba(255, 255, 255, 0.48),
+    0 8px 24px rgba(55, 125, 175, 0.09);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
 
 .glass-card:hover {
-  background: rgba(215, 238, 252, 0.32);
-  border-color: rgba(255, 255, 255, 0.70);
+  background: rgba(145, 215, 252, 0.38);
+  border-color: rgba(235, 248, 255, 0.75);
   box-shadow: 
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.70),
-    inset 0 -1px 1px rgba(150, 195, 225, 0.15),
-    0 12px 30px rgba(45, 75, 100, 0.09);
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65),
+    0 12px 30px rgba(55, 125, 175, 0.14);
   transform: translateY(-2px);
 }
 
 .glass-card-subtle {
   position: relative;
-  background: rgba(210, 235, 250, 0.18);
-  backdrop-filter: blur(16px) saturate(155%);
-  -webkit-backdrop-filter: blur(16px) saturate(155%);
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(140, 208, 250, 0.25);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(220, 242, 255, 0.48);
   box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.50),
-    0 4px 16px rgba(45, 75, 100, 0.04);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    inset 0 1px 1px rgba(255, 255, 255, 0.42),
+    0 4px 16px rgba(55, 125, 175, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
 
 .glass-card-subtle:hover {
-  background: rgba(220, 240, 252, 0.28);
-  border-color: rgba(255, 255, 255, 0.65);
+  background: rgba(150, 218, 252, 0.34);
+  border-color: rgba(235, 248, 255, 0.68);
 }
 
 .glass-panel {
   position: relative;
-  background: rgba(210, 235, 250, 0.20);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.50);
+  background: rgba(140, 208, 250, 0.26);
+  backdrop-filter: blur(20px) saturate(165%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgba(220, 242, 255, 0.52);
   box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.60),
-    0 12px 36px rgba(45, 75, 100, 0.06);
+    inset 0 1px 1px rgba(255, 255, 255, 0.50),
+    0 12px 36px rgba(55, 125, 175, 0.08);
 }
 
 .glass-frame {
   position: relative;
-  background: rgba(205, 232, 250, 0.24);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(135, 206, 250, 0.32);
+  backdrop-filter: blur(20px) saturate(165%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgba(220, 242, 255, 0.60);
   box-shadow: 
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65),
-    0 16px 40px rgba(45, 75, 100, 0.08);
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.55),
+    0 16px 40px rgba(55, 125, 175, 0.10);
 }
 
 /* Utility to hide scrollbars while preserving native horizontal scrolling */
