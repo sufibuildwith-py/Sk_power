@@ -1,0 +1,390 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "solutions": "Solutions",
+    "about": "About",
+    "contact": "Contact",
+    "getQuote": "Get a Quote",
+    "menu": "Menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "eyebrow": "SOLAR TECHNOLOGY · DISTRIBUTION · INSTALLATION",
+    "line1": "The power of the sun,",
+    "line2": "within your hands.",
+    "description": "Premium solar products and complete energy solutions for homes, businesses, and communities embracing a cleaner future.",
+    "primaryCTA": "Explore Solutions",
+    "secondaryCTA": "Browse Products",
+    "bottomStatement": "CLEAN ENERGY. COMPLETE SOLUTIONS.",
+    "scrollIndicator": "Scroll",
+    "sectionIndicator": "01 / ENERGY REIMAGINED"
+  },
+  "solutions": {
+    "eyebrow": "ENGINEERED SOLUTIONS",
+    "title": "Complete clean energy systems, designed for longevity.",
+    "description": "From single-residence high-efficiency arrays to multi-megawatt commercial rooftop installations, SK SOLAR WALA engineers every tier of the energy lifecycle.",
+    "residentialTitle": "Residential Architecture",
+    "residentialDesc": "Aesthetic low-profile black silicon arrays engineered for seamless rooftop integration, whisper-quiet inverters, and battery storage.",
+    "residentialCTA": "Explore Residential",
+    "commercialTitle": "Commercial & Industrial",
+    "commercialDesc": "Turnkey commercial installations delivering predictable operational expenditure reduction, peak shaving, and clean corporate resiliency.",
+    "commercialCTA": "Explore Commercial",
+    "distributionTitle": "Hardware Distribution",
+    "distributionDesc": "Direct wholesale access for certified installers, contractors, and regional partners to Tier-1 solar modules and smart power electronics.",
+    "distributionCTA": "Inquire Wholesale"
+  },
+  "products": {
+    "eyebrow": "PRODUCT CATALOGUE",
+    "title": "Tier-1 photovoltaic modules & intelligent power conversion.",
+    "requestFullCatalogue": "Request Full Catalogue",
+    "inquireSpec": "Inquire Specifications →",
+    "panels": {
+      "category": "Photovoltaic Panels",
+      "name": "SK Alpha 450W Monocrystalline",
+      "metric": "22.8% Efficiency",
+      "desc": "High-density N-type TOPCon bifacial cell architecture with minimal degradation."
+    },
+    "inverters": {
+      "category": "Hybrid Inverters",
+      "name": "SK Matrix 10kW Smart Inverter",
+      "metric": "98.4% Peak Efficiency",
+      "desc": "Integrated dual MPPT tracking with intelligent grid backfeed and microsecond failover."
+    },
+    "storage": {
+      "category": "Battery Storage",
+      "name": "SK Cell Vault 15kWh LFP",
+      "metric": "6000+ Cycles",
+      "desc": "Modular lithium-iron-phosphate energy storage with integrated thermal management."
+    },
+    "management": {
+      "category": "Smart Management",
+      "name": "SK Energy Gateway Hub",
+      "metric": "Sub-second Telemetry",
+      "desc": "Cloud-connected edge computing node for whole-site consumption analytics."
+    }
+  },
+  "about": {
+    "eyebrow": "ABOUT SK SOLAR WALA",
+    "title": "Energy, beautifully engineered.",
+    "paragraph1": "SK SOLAR WALA was founded on a simple conviction: clean energy infrastructure should embody the same design precision, architectural elegance, and uncompromising quality as the world’s most refined consumer technology.",
+    "paragraph2": "We bridge the divide between precision equipment distribution and end-to-end installation craftsmanship, ensuring every solar array performs at its mathematical optimum for decades.",
+    "stat1Value": "Tier-1",
+    "stat1Label": "Silicon Standards",
+    "stat2Value": "25-Year",
+    "stat2Label": "Power Assurance",
+    "stat3Value": "Zero",
+    "stat3Label": "Emissions Compromise",
+    "imageCaption": "Photovoltaic technology harmonized with modern architectural living."
+  },
+  "footer": {
+    "tagline": "The power of the sun, within your hands.",
+    "topOfPage": "Top of Page",
+    "solutions": "Solutions",
+    "catalogue": "Catalogue",
+    "pmSuryaGhar": "PM Surya Ghar",
+    "requestQuote": "Request Quote",
+    "copyright": "All rights reserved."
+  },
+  "pmSuryaGhar": {
+    "nav": "PM Surya Ghar",
+    "badge": "GOVERNMENT OF INDIA · RESIDENTIAL ROOFTOP SOLAR",
+    "title": "PM Surya Ghar: Muft Bijli Yojana",
+    "supportingQuote": "An initiative by the Government of India helping households generate their own electricity and embrace clean energy.",
+    "introParagraph": "Launched by the Government of India, the PM Surya Ghar: Muft Bijli Yojana is a transformative national initiative aimed at accelerating residential rooftop solar adoption. Targeting one crore households across the country, the scheme is designed to provide substantial financial assistance, enabling families to enjoy up to 300 units of free electricity every month while fostering long-term national energy independence.",
+    "govAttribution": "An initiative of the Government of India · Ministry of New and Renewable Energy",
+    "infoDisclosure": "Informational guide curated by SK SOLAR WALA · Official portal: pmsuryaghar.gov.in",
+    "modiCaption": "Prime Minister Narendra Modi announced PM Surya Ghar: Muft Bijli Yojana on 13 February 2024 to empower 1 crore households with rooftop solar.",
+    "modiSource": "Official Portrait · Government of India (GODL)",
+    "storyEyebrow": "ROOFTOP SOLAR ADOPTION",
+    "storyHeadline": "Turn your rooftop into an energy asset.",
+    "storySub": "Real residential rooftop solar installations across India generating clean, decentralized power directly under the sun.",
+    "storyCaption": "Residential rooftop solar in Mehsana, Gujarat · Verified field installation",
+    "subsidyProgressionLabel": "General-State Central Subsidy Progression",
+    "journeyInteractiveHint": "Select any step to view procedural details & visual verification",
+    "stats": {
+      "households": {
+        "value": "1 Crore",
+        "label": "Target Households",
+        "desc": "National residential solar coverage goal under the central mission."
+      },
+      "benefit": {
+        "value": "Up to 300 units",
+        "label": "Intended Monthly Benefit",
+        "desc": "Designed to offset average monthly residential electricity demand."
+      },
+      "subsidy": {
+        "value": "₹1,08,000",
+        "label": "Maximum Subsidy Support",
+        "desc": "Combined central and state assistance for eligible residential systems."
+      }
+    },
+    "subsidy": {
+      "eyebrow": "CENTRAL FINANCIAL ASSISTANCE (CFA)",
+      "title": "Clear, verified subsidy structure.",
+      "desc": "The central government provides direct financial assistance credited directly to your bank account via Direct Benefit Transfer (DBT) upon successful net-metering and commissioning.",
+      "tabs": {
+        "general": "General States",
+        "special": "Special States & UTs"
+      },
+      "table": {
+        "colCapacity": "Rooftop Solar Capacity",
+        "colSubsidy": "Central Financial Assistance (CFA)",
+        "colAvgUnits": "Suitable Monthly Consumption",
+        "row1Cap": "1 kW",
+        "row1Sub": "₹30,000",
+        "row1Units": "0 – 150 units",
+        "row2Cap": "2 kW",
+        "row2Sub": "₹60,000",
+        "row2Units": "150 – 300 units",
+        "row3Cap": "3 kW",
+        "row3Sub": "₹78,000",
+        "row3Units": "Above 300 units",
+        "row4Cap": "Above 3 kW",
+        "row4Sub": "₹78,000 (Maximum Cap)",
+        "row4Units": "High consumption domestic"
+      },
+      "specialTable": {
+        "row1Sub": "₹33,000",
+        "row2Sub": "₹66,000",
+        "row3Sub": "₹85,800",
+        "row4Sub": "₹85,800 (Maximum Cap)"
+      },
+      "calculationTitle": "How the subsidy is calculated:",
+      "calcPoint1": "First 2 kW: ₹30,000 per kW (up to ₹60,000).",
+      "calcPoint2": "Additional capacity between 2 kW and 3 kW: ₹18,000 per kW (₹18,000 for the 3rd kW, totaling ₹78,000).",
+      "calcPoint3": "Systems above 3 kW: The central subsidy remains capped at ₹78,000; no additional central assistance is granted beyond 3 kW.",
+      "specialRegionNote": "Special Category States and UTs (North-Eastern states including Sikkim, Uttarakhand, Himachal Pradesh, Jammu & Kashmir, Ladakh, Andaman & Nicobar, and Lakshadweep) receive higher assistance: ₹33,000/kW for the first 2 kW and ₹19,800 for the 3rd kW, with a maximum cap of ₹85,800.",
+      "rwaNote": "Group Housing Societies (GHS) / Resident Welfare Associations (RWAs) can receive CFA of ₹18,000 per kW for common facilities such as EV charging and water pumping (up to 500 kWp total).",
+      "dbtNote": "Important: The subsidy is disbursed through Direct Benefit Transfer (DBT) directly into your bank account after system installation, safety inspection, and DISCOM commissioning. It is not an upfront dealer discount.",
+      "officialCta": "Check Official Subsidy Details"
+    },
+    "eligibility": {
+      "eyebrow": "QUALIFICATION CRITERIA",
+      "title": "Who can apply for the scheme?",
+      "desc": "The PM Surya Ghar scheme is designed specifically for domestic residential consumers across India.",
+      "citizenship": {
+        "title": "Indian Citizenship",
+        "desc": "The applicant must be a citizen of India residing within Indian territory."
+      },
+      "rooftop": {
+        "title": "Suitable Residential Rooftop",
+        "desc": "Must own or legally control a shadow-free roof area or premise suitable for solar installation."
+      },
+      "connection": {
+        "title": "Valid Electricity Connection",
+        "desc": "Must have an active domestic/residential consumer account number with the local DISCOM."
+      },
+      "technical": {
+        "title": "Scheme & Technical Compliance",
+        "desc": "Installation must use ALMM-approved solar modules and BIS-certified smart inverters from an empanelled vendor."
+      },
+      "portalProcess": {
+        "title": "Official Portal Registration",
+        "desc": "The entire lifecycle—from feasibility application to vendor selection and commissioning—must be completed through the National Portal."
+      },
+      "commercialExclusion": {
+        "badge": "IMPORTANT NOTICE",
+        "title": "Commercial & Industrial Exclusion",
+        "desc": "Commercial establishments, industrial complexes, agricultural connections, and government facilities are not eligible for this residential CFA under the PM Surya Ghar scheme."
+      }
+    },
+    "journey": {
+      "eyebrow": "STEP-BY-STEP PROCESS",
+      "title": "Your application journey",
+      "desc": "Follow the prescribed official workflow through the National Portal to secure feasibility clearance and subsidy release.",
+      "steps": [
+        {
+          "step": "01",
+          "title": "Portal Registration",
+          "desc": "Visit pmsuryaghar.gov.in, select your state and electricity distribution company (DISCOM), and enter your consumer account number and mobile number to register."
+        },
+        {
+          "step": "02",
+          "title": "Submit Application",
+          "desc": "Log in with your registered credentials, fill out the rooftop solar application form with required load details, and submit for technical approval."
+        },
+        {
+          "step": "03",
+          "title": "Feasibility Approval",
+          "desc": "Your local DISCOM assesses grid infrastructure and power capacity. Wait for official technical feasibility approval to be granted on the portal."
+        },
+        {
+          "step": "04",
+          "title": "Select Empanelled Vendor",
+          "desc": "Choose a registered vendor empanelled for your DISCOM on the national portal. Agree on project quotes and sign the vendor agreement."
+        },
+        {
+          "step": "05",
+          "title": "System Installation",
+          "desc": "The approved vendor installs your rooftop solar panels, mounting structures, wiring, and inverter strictly in accordance with technical safety standards."
+        },
+        {
+          "step": "06",
+          "title": "Inspection & Commissioning",
+          "desc": "The DISCOM conducts a site inspection, installs a bidirectional net meter, synchronizes with the grid, and generates the official Commissioning Certificate."
+        },
+        {
+          "step": "07",
+          "title": "Bank Proof & Subsidy Release",
+          "desc": "Submit your bank account details and upload a cancelled cheque or passbook copy on the portal. The central subsidy is disbursed directly to your bank account via DBT."
+        }
+      ],
+      "disclaimer": "Note: Process duration varies based on local DISCOM workload, grid availability, and documentation verification. Approvals are not instantaneous."
+    },
+    "documents": {
+      "eyebrow": "CHECKLIST & PREPARATION",
+      "title": "Required documents & information",
+      "desc": "Prepare these verified documents in advance to ensure smooth portal registration and swift verification.",
+      "items": [
+        {
+          "name": "Electricity Bill",
+          "detail": "Latest electricity bill showing active consumer account number (CA number) and sanctioned domestic load."
+        },
+        {
+          "name": "Active Mobile Number",
+          "detail": "A mobile number linked to the consumer profile for receiving one-time passwords (OTPs) and portal status alerts."
+        },
+        {
+          "name": "Applicant Identity & Address Proof",
+          "detail": "Government-issued identity proof (Aadhaar Card, Voter ID) matching the electricity connection or property ownership."
+        },
+        {
+          "name": "Bank Account Proof",
+          "detail": "Bank passbook copy or cancelled cheque displaying applicant name, account number, and IFSC code clearly for DBT credit."
+        },
+        {
+          "name": "Site & Meter Photographs",
+          "detail": "Geo-tagged installation and net-meter photographs captured by the empanelled vendor during commissioning."
+        }
+      ],
+      "note": "Final document requirements may vary according to the application stage and applicable scheme guidelines. Always follow the official portal's instructions."
+    },
+    "benefits": {
+      "eyebrow": "SUSTAINABLE ADVANTAGES",
+      "title": "Why invest in residential rooftop solar?",
+      "desc": "Harnessing the sun transforms your empty roof into a high-performance clean energy power plant.",
+      "items": [
+        {
+          "title": "On-Site Power Generation",
+          "desc": "Produce clean solar electricity right where you live, meeting your home's daytime energy needs directly."
+        },
+        {
+          "title": "Reduced Grid Dependence",
+          "desc": "Dramatically lower your reliance on conventional grid electricity during peak sunlight hours."
+        },
+        {
+          "title": "Potential Bill Savings",
+          "desc": "Offset your electricity costs through net-metering by exporting surplus daytime power to the grid."
+        },
+        {
+          "title": "Asset Utilization",
+          "desc": "Make productive, recurring use of previously idle rooftop space with durable, low-profile photovoltaic modules."
+        },
+        {
+          "title": "Clean Energy Contribution",
+          "desc": "Actively reduce your household's carbon footprint and contribute to India's national clean energy targets."
+        }
+      ],
+      "disclaimer": "Savings vary by geographic irradiance, shading, seasonal conditions, and family consumption patterns. Solar systems generate power during daylight hours."
+    },
+    "faqs": {
+      "eyebrow": "COMMON QUESTIONS",
+      "title": "Frequently Asked Questions",
+      "desc": "Clear, verified answers to the most common questions regarding PM Surya Ghar: Muft Bijli Yojana.",
+      "list": [
+        {
+          "q": "What is PM Surya Ghar: Muft Bijli Yojana?",
+          "a": "It is a central government initiative approved by the Union Cabinet with an outlay of ₹75,021 crore aimed at providing financial assistance to 1 crore residential households to install rooftop solar, enabling them to benefit from up to 300 units of free electricity every month."
+        },
+        {
+          "q": "Who is eligible to apply for this scheme?",
+          "a": "Any Indian citizen owning a residential property with a suitable rooftop and an active domestic electricity connection with a local DISCOM is eligible. The applicant must not have previously claimed a central rooftop solar subsidy for the same meter."
+        },
+        {
+          "q": "How much central subsidy can a household receive?",
+          "a": "In general states, the Central Financial Assistance (CFA) is ₹30,000 for 1 kW, ₹60,000 for 2 kW, and ₹78,000 for 3 kW. In special category states and UTs (North-East, Uttarakhand, Himachal Pradesh, J&K, Ladakh, etc.), the subsidy is ₹33,000 for 1 kW, ₹66,000 for 2 kW, and up to ₹85,800 for 3 kW and above."
+        },
+        {
+          "q": "Is additional central subsidy available for systems above 3 kW?",
+          "a": "No. The central subsidy is capped at 3 kW (₹78,000 in general states and ₹85,800 in special category states). You can install larger capacities if permitted by your DISCOM sanctioned load, but the central subsidy will not exceed this cap."
+        },
+        {
+          "q": "Can commercial establishments or offices apply for this residential subsidy?",
+          "a": "No. The Central Financial Assistance under PM Surya Ghar is strictly reserved for domestic/residential consumers. Commercial, industrial, and agricultural connections are not eligible."
+        },
+        {
+          "q": "Do I need approval from my local electricity distribution company (DISCOM)?",
+          "a": "Yes. Before commencing installation, you must submit an application through the national portal and receive technical feasibility approval from your DISCOM. After installation, the DISCOM must also inspect the system and install a net meter."
+        },
+        {
+          "q": "Can I choose any solar installation vendor?",
+          "a": "No. To be eligible for the central subsidy, you must contract with a vendor who is registered and empanelled on the national portal for your specific DISCOM. Installations done by non-empanelled vendors cannot claim the scheme CFA."
+        },
+        {
+          "q": "When and how is the subsidy credited?",
+          "a": "The subsidy is disbursed directly into the applicant's verified bank account via Direct Benefit Transfer (DBT) within approximately 30 days after the DISCOM issues the Commissioning Certificate and you submit your bank account details on the portal."
+        },
+        {
+          "q": "What documents are required to apply?",
+          "a": "Key requirements include your latest electricity bill showing your consumer account number (CA number), an active mobile number linked with Aadhaar, proof of identity/address, and a cancelled cheque or bank passbook copy displaying your bank account number and IFSC code."
+        },
+        {
+          "q": "Where and how can I submit my application?",
+          "a": "Applications must be submitted exclusively through the official Government of India National Portal at pmsuryaghar.gov.in or through the official PM Surya Ghar mobile application."
+        },
+        {
+          "q": "Can I install solar panels first and apply for the subsidy later?",
+          "a": "No. You must register and obtain technical feasibility clearance from your DISCOM on the national portal BEFORE installing the system. Retrospective claims for solar systems installed without prior portal registration and DISCOM approval are not eligible for subsidy."
+        }
+      ]
+    },
+    "services": {
+      "eyebrow": "SK SOLAR WALA EXPERTISE",
+      "title": "Your solar journey, made simpler.",
+      "desc": "Understanding a government scheme and choosing the right solar system can feel complicated. SK SOLAR WALA helps you explore suitable solar products, understand your installation requirements, and take the next step with confidence.",
+      "consultation": {
+        "title": "Solar Consultation",
+        "desc": "Understand your rooftop requirements, shadow analysis, and suitable system capacity based on your family's electricity consumption."
+      },
+      "selection": {
+        "title": "System Selection",
+        "desc": "Explore suitable Tier-1 monocrystalline panels, intelligent hybrid inverters, and durable mounting structures designed for Indian weather conditions."
+      },
+      "assistance": {
+        "title": "Installation Assistance",
+        "desc": "Discuss installation planning, structural safety guidelines, and understand the applicable application steps for your region."
+      },
+      "ethicalDisclaimer": "Ethical Transparency: SK SOLAR WALA is an independent clean energy brand and hardware distributor. We do not claim official government empanelment, nor do we represent the Ministry of New and Renewable Energy or any DISCOM. Official scheme applications, feasibility assessments, and subsidy disbursals remain under the exclusive jurisdiction of the Government of India via pmsuryaghar.gov.in."
+    },
+    "ctaPanel": {
+      "title": "Ready to explore rooftop solar?",
+      "subtitle": "Take the first step towards a more energy-independent home.",
+      "primaryBtn": "Apply on Official Portal",
+      "secondaryBtn": "Talk to SK SOLAR WALA",
+      "disclaimer": "Scheme applications, eligibility decisions, and subsidy disbursement are governed by the official Government of India portal and applicable authorities."
+    }
+  },
+  "quoteModal": {
+    "badge": "SK SOLAR WALA ESTIMATE",
+    "title": "Request an Energy Consultation",
+    "subtitle": "Engineered hardware, precision distribution, and certified installation.",
+    "residentialTab": "Residential System",
+    "commercialTab": "Commercial / Enterprise",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Jane Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "jane@example.com",
+    "billLabel": "Estimated Monthly Electricity Bill ($)",
+    "billPlaceholder": "$250 / month",
+    "submitButton": "Generate Custom System Quote",
+    "submittedTitle": "Request Received",
+    "submittedDesc": "Our clean energy engineering team will review your requirements and provide a tailored system quote within 24 hours.",
+    "closeButton": "Close Window"
+  },
+  "language": {
+    "switch": "Switch language",
+    "en": "EN",
+    "hi": "हिंदी"
+  }
+}
