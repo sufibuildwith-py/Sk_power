@@ -13,9 +13,9 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
   const isHindi = i18n.language === 'hi';
 
   return (
-    <div className="relative z-20 bg-[#F7F5EF] text-solar-charcoal">
+    <div className="relative z-20 bg-[#F7F5EF] text-solar-charcoal w-full">
       {/* 1. Solutions Section — ROW 01 (LEFT TO RIGHT Draggable Glass Track) */}
-      <section id="solutions" className="relative py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10 overflow-hidden">
+      <section id="solutions" className="relative w-full py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10 overflow-hidden">
         {/* Soft Sky-Blue & Solar Amber Ambient Light Glows behind the glass track */}
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[380px] bg-gradient-to-tr from-[#8cc8f5]/26 via-[#bce2fa]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[320px] bg-gradient-to-tl from-solar-amber/14 via-[#c8e6fc]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -128,7 +128,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
       </section>
 
       {/* 2. About Section */}
-      <section id="about" className="py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
+      <section id="about" className="w-full py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <div className="flex items-center gap-2 mb-3">
@@ -187,7 +187,7 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
       <PMSuryaGharSection onOpenQuote={onOpenQuote} />
 
       {/* 5. Footer & Contact */}
-      <footer id="contact" className="py-16 px-6 sm:px-10 md:px-14 border-t border-solar-charcoal/10 bg-[#f0ede4]">
+      <footer id="contact" className="w-full py-16 px-6 sm:px-10 md:px-14 border-t border-solar-charcoal/10 bg-[#f0ede4]">
         <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg overflow-hidden bg-white/95 border border-solar-charcoal/10 shadow-sm flex items-center justify-center shrink-0">

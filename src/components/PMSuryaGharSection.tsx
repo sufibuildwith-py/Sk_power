@@ -43,7 +43,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
     <section
       id="pm-surya-ghar"
       aria-label="PM Surya Ghar: Muft Bijli Yojana Guide"
-      className="scroll-mt-24 py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10"
+      className="w-full scroll-mt-24 py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10"
     >
       {/* =========================================================================
           CHAPTER 01 — THE INITIATIVE (Editorial Split-Screen Introduction)
@@ -250,7 +250,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
       {/* =========================================================================
           CHAPTER 07 — DOCUMENTS & PREPARATION (Compact Two-Column Glass Checklist)
          ========================================================================= */}
-      <div className="relative mb-20 sm:mb-28">
+      <div className="relative mb-20 sm:mb-28 overflow-hidden">
         {/* Ambient Sky-Blue Glow behind Documents Glass Panel */}
         <div className="absolute -top-10 right-10 w-[550px] h-[350px] bg-gradient-to-bl from-[#9ed2f8]/24 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="relative glass-panel rounded-3xl p-6 sm:p-10">
@@ -362,7 +362,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
       {/* =========================================================================
           CHAPTER 08 — FREQUENTLY ASKED QUESTIONS (Frosted Glass Panel System)
          ========================================================================= */}
-      <div className="relative mb-20 sm:mb-28">
+      <div className="relative mb-20 sm:mb-28 overflow-hidden">
         {/* Ambient Sky-Blue & Amber Glows behind FAQ Glass Panel */}
         <div className="absolute top-1/3 left-1/4 w-[700px] h-[450px] bg-gradient-to-tr from-[#94ccf6]/24 via-[#bde2fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-1/4 w-[480px] h-[320px] bg-gradient-to-tl from-solar-amber/14 via-[#c8e6fc]/16 to-transparent rounded-full blur-3xl pointer-events-none" />
