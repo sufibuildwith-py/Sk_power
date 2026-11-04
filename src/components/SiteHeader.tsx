@@ -8,7 +8,7 @@ interface SiteHeaderProps {
   onOpenMobileMenu: () => void;
 }
 
-export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenQuote, onOpenMobileMenu }) => {
+export const SiteHeader: React.FC<SiteHeaderProps> = React.memo(({ onOpenQuote, onOpenMobileMenu }) => {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
 
@@ -102,4 +102,4 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenQuote, onOpenMobil
       </div>
     </header>
   );
-};
+});

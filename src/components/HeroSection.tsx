@@ -6,7 +6,7 @@ import { HeroContent } from './HeroContent';
 import { HeroMeta } from './HeroMeta';
 import { HeroActionProps } from '../types';
 
-export const HeroSection: React.FC<HeroActionProps> = ({ onExplore, onBrowse }) => {
+export const HeroSection: React.FC<HeroActionProps> = React.memo(({ onExplore, onBrowse }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -123,4 +123,4 @@ export const HeroSection: React.FC<HeroActionProps> = ({ onExplore, onBrowse }) 
       <HeroMeta />
     </section>
   );
-};
+});

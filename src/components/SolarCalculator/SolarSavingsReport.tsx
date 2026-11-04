@@ -16,9 +16,11 @@ import {
   ShieldCheck,
   ChevronDown,
   ChevronUp,
+  Loader2,
 } from 'lucide-react';
 import { SolarCalculationResults, SolarCalculatorInputs } from '../../lib/solarCalculator';
 import { UP_DISTRICTS } from '../../config/solarAssumptions';
+import { generateSolarAssessmentPdf } from '../../lib/generateSolarAssessmentPdf';
 
 interface SolarSavingsReportProps {
   inputs: SolarCalculatorInputs;
@@ -37,6 +39,7 @@ export const SolarSavingsReport: React.FC<SolarSavingsReportProps> = ({
   const isHindi = i18n.language === 'hi';
 
   const [showProjectionTable, setShowProjectionTable] = useState<boolean>(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState<boolean>(false);
 
   const district = UP_DISTRICTS.find((d) => d.id === inputs.districtId);
   const districtName = isHindi ? (district?.nameHi || 'वाराणसी') : (district?.nameEn || 'Varanasi');
@@ -73,9 +76,20 @@ export const SolarSavingsReport: React.FC<SolarSavingsReportProps> = ({
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
 
-  // Download / Print PDF Report
-  const handlePrintPDF = () => {
-    window.print();
+  // Download Standalone One-Page A4 PDF Assessment Report
+  const handleDownloadPDF = async () => {
+    try {
+      setIsGeneratingPdf(true);
+      await generateSolarAssessmentPdf({
+        inputs,
+        results,
+        language: isHindi ? 'hi' : 'en',
+      });
+    } catch (err) {
+      console.error('Failed to generate solar assessment PDF:', err);
+    } finally {
+      setIsGeneratingPdf(false);
+    }
   };
 
   // 12 month labels
@@ -603,12 +617,25 @@ export const SolarSavingsReport: React.FC<SolarSavingsReportProps> = ({
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <button
             type="button"
-            onClick={handlePrintPDF}
-            className="px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all flex items-center gap-2"
-            title="Download / Print PDF Report"
+            onClick={handleDownloadPDF}
+            disabled={isGeneratingPdf}
+            className="px-4 py-2.5 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold transition-all flex items-center gap-2 active:scale-98"
+            title={t('calculator.report.downloadPdf', 'Download Standalone A4 PDF Report')}
           >
-            <Download className="w-4 h-4" />
-            <span>PDF Report</span>
+            {isGeneratingPdf ? (
+              <Loader2 className="w-4 h-4 animate-spin text-solar-amber" />
+            ) : (
+              <Download className="w-4 h-4 text-solar-amber" />
+            )}
+            <span>
+              {isGeneratingPdf
+                ? isHindi
+                  ? 'पीडीएफ तैयार हो रहा है...'
+                  : 'Generating PDF...'
+                : isHindi
+                ? 'पीडीएफ रिपोर्ट'
+                : 'PDF Report'}
+            </span>
           </button>
 
           <button

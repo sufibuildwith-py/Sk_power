@@ -9,24 +9,45 @@ import { HeroSection } from './components/HeroSection';
 import { MobileNavigation } from './components/MobileNavigation';
 import { QuoteModal, QuotePrefillData } from './components/QuoteModal';
 import { PreviewSections } from './components/PreviewSections';
+import { generateSolarAssessmentPdf } from './lib/generateSolarAssessmentPdf';
+import { calculateSolarSystem } from './lib/solarCalculator';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+if (typeof window !== 'undefined') {
+  (window as any).__generateSolarAssessmentPdf = generateSolarAssessmentPdf;
+  (window as any).__calculateSolarSystem = calculateSolarSystem;
+}
 
 export const App: React.FC = () => {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quotePrefill, setQuotePrefill] = useState<QuotePrefillData | undefined>();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  const handleOpenQuote = (prefill?: QuotePrefillData) => {
+  const handleOpenQuote = React.useCallback((prefill?: QuotePrefillData) => {
     setQuotePrefill(prefill);
     setIsQuoteOpen(true);
-  };
+  }, []);
 
-  // Initialize Lenis smooth scroll for desktop performance
+  const handleCloseQuote = React.useCallback(() => {
+    setIsQuoteOpen(false);
+  }, []);
+
+  const handleOpenMobileNav = React.useCallback(() => {
+    setIsMobileNavOpen(true);
+  }, []);
+
+  const handleCloseMobileNav = React.useCallback(() => {
+    setIsMobileNavOpen(false);
+  }, []);
+
+  // Initialize Lenis smooth scroll for desktop performance (bypass entirely on touch devices to ensure native 120Hz kinetic scroll)
   useEffect(() => {
-    // Only initialize smooth scroll on non-touch devices or when user prefers motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    const isTouch =
+      window.matchMedia('(pointer: coarse)').matches ||
+      'ontouchstart' in window ||
+      (typeof navigator !== 'undefined' && (navigator.maxTouchPoints > 0 || (navigator as any).msMaxTouchPoints > 0));
 
     if (prefersReducedMotion || isTouch) {
       return;
@@ -45,7 +66,6 @@ export const App: React.FC = () => {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(updateTicker);
@@ -53,26 +73,26 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  const handleExplore = () => {
+  const handleExplore = React.useCallback(() => {
     const el = document.getElementById('solutions');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  const handleBrowse = () => {
+  const handleBrowse = React.useCallback(() => {
     const el = document.getElementById('products');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full bg-[#8ba3b3] selection:bg-solar-amber/25 selection:text-solar-ink">
       {/* Floating Header */}
       <SiteHeader
-        onOpenQuote={() => setIsQuoteOpen(true)}
-        onOpenMobileMenu={() => setIsMobileNavOpen(true)}
+        onOpenQuote={() => handleOpenQuote()}
+        onOpenMobileMenu={handleOpenMobileNav}
       />
 
       {/* Hero Section */}
@@ -91,14 +111,14 @@ export const App: React.FC = () => {
       {/* Mobile Navigation Drawer */}
       <MobileNavigation
         isOpen={isMobileNavOpen}
-        onClose={() => setIsMobileNavOpen(false)}
+        onClose={handleCloseMobileNav}
         onOpenQuote={() => handleOpenQuote()}
       />
 
       {/* Request Quote Modal */}
       <QuoteModal
         isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
+        onClose={handleCloseQuote}
         prefill={quotePrefill}
       />
     </div>

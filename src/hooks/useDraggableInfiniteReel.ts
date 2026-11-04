@@ -37,6 +37,7 @@ export function useDraggableInfiniteReel({
   const pointerHistoryRef = useRef<{ dx: number; dt: number }[]>([]);
   const hasDraggedRef = useRef<boolean>(false);
   const justDraggedRef = useRef<boolean>(false);
+  const dragTimeoutRef = useRef<number | null>(null);
   const prefersReducedMotionRef = useRef<boolean>(false);
 
   // Measure Stride: Set 1 width + gap between sets
@@ -149,6 +150,7 @@ export function useDraggableInfiniteReel({
     }
 
     return () => {
+      if (dragTimeoutRef.current) clearTimeout(dragTimeoutRef.current as any);
       gsap.ticker.remove(updateTicker);
       intersectionObserver.disconnect();
     };
@@ -157,7 +159,9 @@ export function useDraggableInfiniteReel({
   // Pointer Drag Interactions
   const handlePointerDown = (e: React.PointerEvent) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
+    if (dragTimeoutRef.current) clearTimeout(dragTimeoutRef.current as any);
     hasDraggedRef.current = false;
+    justDraggedRef.current = false;
     isDraggingRef.current = false;
     lastPointerXRef.current = e.clientX;
     lastPointerTimeRef.current = performance.now();
@@ -175,7 +179,9 @@ export function useDraggableInfiniteReel({
       isDraggingRef.current = true;
       setIsDragging(true);
       try {
-        e.currentTarget.setPointerCapture(e.pointerId);
+        if (!e.currentTarget.hasPointerCapture(e.pointerId)) {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        }
       } catch {}
     }
 
@@ -204,12 +210,15 @@ export function useDraggableInfiniteReel({
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     lastPointerTimeRef.current = 0;
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch {}
+
     if (hasDraggedRef.current) {
       isDraggingRef.current = false;
       setIsDragging(false);
-      try {
-        e.currentTarget.releasePointerCapture(e.pointerId);
-      } catch {}
 
       // Calculate inertia release velocity from recent history, clamped to [-1200, 1200]
       if (pointerHistoryRef.current.length > 0) {
@@ -221,16 +230,39 @@ export function useDraggableInfiniteReel({
       }
 
       justDraggedRef.current = true;
-      setTimeout(() => {
+      if (dragTimeoutRef.current) clearTimeout(dragTimeoutRef.current as any);
+      dragTimeoutRef.current = setTimeout(() => {
         justDraggedRef.current = false;
+        hasDraggedRef.current = false;
+        dragTimeoutRef.current = null;
       }, 90);
+    } else {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      hasDraggedRef.current = false;
+      justDraggedRef.current = false;
     }
+  };
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    lastPointerTimeRef.current = 0;
+    isDraggingRef.current = false;
+    hasDraggedRef.current = false;
+    justDraggedRef.current = false;
+    setIsDragging(false);
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch {}
   };
 
   const handleClickCapture = (e: React.MouseEvent) => {
     if (hasDraggedRef.current || justDraggedRef.current) {
       e.stopPropagation();
       e.preventDefault();
+      hasDraggedRef.current = false;
+      justDraggedRef.current = false;
     }
   };
 
@@ -250,6 +282,7 @@ export function useDraggableInfiniteReel({
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,
+    handlePointerCancel,
     handleClickCapture,
     handleMouseEnter,
     handleMouseLeave,

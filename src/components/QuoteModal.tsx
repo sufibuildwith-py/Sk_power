@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, MapPin, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 export interface QuotePrefillData {
   serviceInterest?: string;
@@ -24,21 +25,26 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
   const [bill, setBill] = useState<string>('');
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-      if (prefill?.serviceInterest) setServiceInterest(prefill.serviceInterest);
-      if (prefill?.city) setSelectedCity(prefill.city);
-      if (prefill?.bill) setBill(prefill.bill);
-    } else {
-      document.body.style.overflow = '';
+    if (!isOpen) {
       setSubmitted(false);
+      return;
     }
+
+    const lockToken = lockScroll('quote-modal');
+
+    if (prefill?.serviceInterest) setServiceInterest(prefill.serviceInterest);
+    if (prefill?.city) setSelectedCity(prefill.city);
+    if (prefill?.bill) setBill(prefill.bill);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      document.body.style.overflow = '';
+      unlockScroll(lockToken);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose, prefill]);
@@ -48,17 +54,27 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
     setSubmitted(true);
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="quote-modal-title"
+          className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 overflow-y-auto pointer-events-auto"
+        >
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-solar-ink/60 backdrop-blur-md"
+            transition={{ duration: 0.2 }}
+            onClick={handleClose}
+            className="fixed inset-0 bg-solar-ink/60"
           />
 
           {/* Modal Card */}
@@ -66,7 +82,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
             className="relative z-10 w-full max-w-lg bg-[#FAF9F5] rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/60 my-auto max-h-[92vh] overflow-y-auto no-scrollbar"
           >
             {/* Header */}
@@ -78,8 +94,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
                 </span>
               </div>
               <button
-                onClick={onClose}
-                className="w-8 h-8 rounded-full flex items-center justify-center bg-solar-ink/5 hover:bg-solar-ink/10 text-solar-charcoal transition-colors"
+                type="button"
+                onClick={handleClose}
+                className="w-8 h-8 rounded-full flex items-center justify-center bg-solar-ink/5 hover:bg-solar-ink/10 text-solar-charcoal transition-colors active:scale-90"
                 aria-label={t('quoteModal.closeButton')}
               >
                 <X className="w-4 h-4" />
@@ -98,8 +115,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
                   {t('quoteModal.submittedDesc')}
                 </p>
                 <button
-                  onClick={onClose}
-                  className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill"
+                  type="button"
+                  onClick={handleClose}
+                  className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill active:scale-95 transition-transform"
                 >
                   {t('quoteModal.closeButton')}
                 </button>

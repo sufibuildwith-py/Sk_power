@@ -11,7 +11,7 @@ interface PreviewSectionsProps {
   onOpenQuote: (prefill?: QuotePrefillData) => void;
 }
 
-export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote }) => {
+export const PreviewSections: React.FC<PreviewSectionsProps> = React.memo(({ onOpenQuote }) => {
   const { t, i18n } = useTranslation();
   const isHindi = i18n.language === 'hi';
 
@@ -212,4 +212,4 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = ({ onOpenQuote })
       </footer>
     </div>
   );
-};
+});
