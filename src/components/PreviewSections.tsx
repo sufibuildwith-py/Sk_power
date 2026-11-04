@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { PMSuryaGharSection } from './PMSuryaGharSection';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import { SolarSavingsCalculator } from './SolarSavingsCalculator';
+import { TrustedBrandsSection } from './TrustedBrandsSection';
 
 import { QuotePrefillData } from './QuoteModal';
 
@@ -173,6 +174,9 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = React.memo(({ onO
           <SolarSavingsCalculator onOpenQuote={onOpenQuote} />
         </div>
       </section>
+
+      {/* 3. Our Trusted Brands Section */}
+      <TrustedBrandsSection />
 
       {/* 4. PM Surya Ghar: Muft Bijli Yojana Section */}
       <PMSuryaGharSection onOpenQuote={onOpenQuote} />
