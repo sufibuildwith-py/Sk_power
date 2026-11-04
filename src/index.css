@@ -106,6 +106,15 @@ html[lang="hi"] .font-display {
   }
 }
 
+@keyframes faqFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .glass-card-subtle {
   position: relative;
   background: rgba(140, 208, 250, 0.25);

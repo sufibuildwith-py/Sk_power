@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import {
@@ -24,21 +24,21 @@ interface FaqItemProps {
   item: { q: string; a: string };
   idx: number;
   isOpen: boolean;
-  onToggle: () => void;
+  onToggle: (idx: number) => void;
   isHindi: boolean;
 }
 
 const FaqItem: React.FC<FaqItemProps> = React.memo(({ item, idx, isOpen, onToggle, isHindi }) => (
   <div
-    className={`glass-card-subtle rounded-2xl overflow-hidden transition-colors duration-200 ${
+    className={`rounded-2xl overflow-hidden border transition-colors duration-150 ${
       isOpen
-        ? 'bg-[#b6e2fa]/45 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
-        : 'hover:bg-[#c6e8fc]/35'
+        ? 'bg-[#b6e2fa]/60 border-solar-amber/50 shadow-sm'
+        : 'bg-[#bfe2f8]/25 border-sky-200/40 hover:bg-[#bfe2f8]/40'
     }`}
   >
     <button
       type="button"
-      onClick={onToggle}
+      onClick={() => onToggle(idx)}
       aria-expanded={isOpen}
       aria-controls={`faq-answer-${idx}`}
       id={`faq-question-${idx}`}
@@ -56,24 +56,22 @@ const FaqItem: React.FC<FaqItemProps> = React.memo(({ item, idx, isOpen, onToggl
       </div>
     </button>
 
-    <div
-      id={`faq-answer-${idx}`}
-      role="region"
-      aria-labelledby={`faq-question-${idx}`}
-      className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${
-        isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-      }`}
-    >
-      <div className="overflow-hidden">
+    {isOpen && (
+      <div
+        id={`faq-answer-${idx}`}
+        role="region"
+        aria-labelledby={`faq-question-${idx}`}
+        className="px-5 sm:px-6 pb-6 pt-1 border-t border-solar-charcoal/5 animate-[faqFadeIn_150ms_ease-out]"
+      >
         <p
-          className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
+          className={`text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 ${
             isHindi ? 'leading-[1.7]' : ''
           }`}
         >
           {item.a}
         </p>
       </div>
-    </div>
+    )}
   </div>
 ));
 
@@ -85,6 +83,10 @@ interface FaqAccordionProps {
 const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, isHindi }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const handleToggle = useCallback((idx: number) => {
+    setOpenIndex((prev) => (prev === idx ? null : idx));
+  }, []);
+
   return (
     <div className="space-y-3">
       {items.map((item, idx) => (
@@ -93,7 +95,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, isHindi }) => {
           item={item}
           idx={idx}
           isOpen={openIndex === idx}
-          onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+          onToggle={handleToggle}
           isHindi={isHindi}
         />
       ))}
@@ -435,11 +437,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
           CHAPTER 08 — FREQUENTLY ASKED QUESTIONS (Frosted Glass Panel System)
          ========================================================================= */}
       <div className="relative mb-20 sm:mb-28 overflow-hidden">
-        {/* Ambient Sky-Blue & Amber Glows behind FAQ Glass Panel */}
-        <div className="absolute top-1/3 left-1/4 w-[700px] h-[450px] bg-gradient-to-tr from-[#94ccf6]/24 via-[#bde2fa]/18 to-transparent rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-1/4 w-[480px] h-[320px] bg-gradient-to-tl from-solar-amber/14 via-[#c8e6fc]/16 to-transparent rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative glass-panel rounded-3xl p-6 sm:p-10 md:p-12">
+        <div className="relative rounded-3xl p-6 sm:p-10 md:p-12 bg-[#8cc8f5]/24 border border-sky-200/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.50),0_12px_36px_rgba(55,125,175,0.08)]">
           <div className="max-w-xl mb-10">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-solar-amber shadow-[0_0_8px_#E9AD59]" />
