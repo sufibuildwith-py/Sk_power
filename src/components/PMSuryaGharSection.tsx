@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import {
   SunMedium,
@@ -21,6 +20,87 @@ import {
   Award,
 } from 'lucide-react';
 
+interface FaqItemProps {
+  item: { q: string; a: string };
+  idx: number;
+  isOpen: boolean;
+  onToggle: () => void;
+  isHindi: boolean;
+}
+
+const FaqItem: React.FC<FaqItemProps> = React.memo(({ item, idx, isOpen, onToggle, isHindi }) => (
+  <div
+    className={`glass-card-subtle rounded-2xl overflow-hidden transition-colors duration-200 ${
+      isOpen
+        ? 'bg-[#b6e2fa]/45 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
+        : 'hover:bg-[#c6e8fc]/35'
+    }`}
+  >
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      aria-controls={`faq-answer-${idx}`}
+      id={`faq-question-${idx}`}
+      className="w-full flex items-center justify-between text-left gap-4 p-5 sm:p-6 focus:outline-none group"
+    >
+      <span className="font-display font-medium text-sm sm:text-base text-solar-ink group-hover:text-solar-charcoal transition-colors">
+        {idx + 1}. {item.q}
+      </span>
+      <div
+        className={`w-8 h-8 rounded-full flex items-center justify-center bg-solar-amber/10 text-solar-charcoal shrink-0 transition-transform duration-200 ${
+          isOpen ? 'rotate-180 bg-solar-amber/25 text-solar-ink' : ''
+        }`}
+      >
+        <ChevronDown className="w-4 h-4 text-solar-amber" />
+      </div>
+    </button>
+
+    <div
+      id={`faq-answer-${idx}`}
+      role="region"
+      aria-labelledby={`faq-question-${idx}`}
+      className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${
+        isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+      }`}
+    >
+      <div className="overflow-hidden">
+        <p
+          className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
+            isHindi ? 'leading-[1.7]' : ''
+          }`}
+        >
+          {item.a}
+        </p>
+      </div>
+    </div>
+  </div>
+));
+
+interface FaqAccordionProps {
+  items: Array<{ q: string; a: string }>;
+  isHindi: boolean;
+}
+
+const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, isHindi }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="space-y-3">
+      {items.map((item, idx) => (
+        <FaqItem
+          key={idx}
+          item={item}
+          idx={idx}
+          isOpen={openIndex === idx}
+          onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+          isHindi={isHindi}
+        />
+      ))}
+    </div>
+  );
+};
+
 interface PMSuryaGharSectionProps {
   onOpenQuote: () => void;
 }
@@ -28,12 +108,6 @@ interface PMSuryaGharSectionProps {
 export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQuote }) => {
   const { t, i18n } = useTranslation();
   const isHindi = i18n.language === 'hi';
-
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaqIndex((prev) => (prev === idx ? null : idx));
-  };
 
   const faqItems = (t('pmSuryaGhar.faqs.list', { returnObjects: true }) as Array<{ q: string; a: string }>) || [];
   const documentItems = (t('pmSuryaGhar.documents.items', { returnObjects: true }) as Array<{ name: string; detail: string }>) || [];
@@ -187,7 +261,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-solar-amber/15 transition-colors" />
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6">
                   <stat.icon className="w-5 h-5 text-solar-amber" />
                 </div>
                 <div className="font-display text-4xl sm:text-5xl font-semibold text-solar-ink mb-2.5 tracking-tight">
@@ -338,7 +412,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
               className="glass-card p-6 sm:p-7 rounded-3xl w-[76vw] min-w-[250px] max-w-[320px] sm:w-[300px] md:w-[330px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-10 h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5 group-hover:scale-105 transition-transform">
+                <div className="w-10 h-10 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-5">
                   <SunMedium className="w-5 h-5 text-solar-amber" />
                 </div>
                 <h4 className="font-display font-semibold text-sm sm:text-base text-solar-ink mb-2.5">
@@ -381,61 +455,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             </p>
           </div>
 
-          <div className="space-y-3">
-            {faqItems.map((item, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className={`glass-card-subtle rounded-2xl overflow-hidden transition-all duration-300 ${
-                    isOpen
-                      ? 'bg-[#b6e2fa]/45 shadow-md border-solar-amber/50 ring-1 ring-solar-amber/30'
-                      : 'hover:bg-[#c6e8fc]/35'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(idx)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${idx}`}
-                    className="w-full flex items-center justify-between text-left gap-4 p-5 sm:p-6 focus:outline-none group"
-                  >
-                    <span className="font-display font-medium text-sm sm:text-base text-solar-ink group-hover:text-solar-charcoal transition-colors">
-                      {idx + 1}. {item.q}
-                    </span>
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center bg-solar-amber/10 text-solar-charcoal shrink-0 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 bg-solar-amber/25 text-solar-ink' : ''
-                      }`}
-                    >
-                      <ChevronDown className="w-4 h-4 text-solar-amber" />
-                    </div>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`faq-answer-${idx}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.28, ease: 'easeOut' }}
-                        className="overflow-hidden"
-                      >
-                        <p
-                          className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-solar-charcoal/85 leading-relaxed pr-8 border-t border-solar-charcoal/5 ${
-                            isHindi ? 'leading-[1.7]' : ''
-                          }`}
-                        >
-                          {item.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+          <FaqAccordion items={faqItems} isHindi={isHindi} />
         </div>
       </div>
 
@@ -502,7 +522,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
               className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6">
                   <Compass className="w-5 h-5 text-solar-amber" />
                 </div>
                 <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
@@ -527,7 +547,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
               className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6">
                   <Layers className="w-5 h-5 text-solar-amber" />
                 </div>
                 <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">
@@ -552,7 +572,7 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
               className="glass-card p-7 sm:p-8 rounded-3xl w-[82vw] min-w-[280px] max-w-[360px] sm:w-[380px] md:w-[420px] flex flex-col justify-between group select-none shrink-0"
             >
               <div>
-                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6 group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-2xl bg-solar-amber/10 border border-solar-amber/20 flex items-center justify-center text-solar-amber mb-6">
                   <Wrench className="w-5 h-5 text-solar-amber" />
                 </div>
                 <h4 className="font-display text-xl font-medium text-solar-ink mb-2.5">

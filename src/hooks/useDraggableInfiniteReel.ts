@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 
 export interface ReelOptions {
@@ -16,7 +16,6 @@ export function useDraggableInfiniteReel({
   gapFallback = 24,
   pauseOnHover = false,
 }: ReelOptions = {}) {
-  const [isDragging, setIsDragging] = useState(false);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const singleSetRef = useRef<HTMLDivElement>(null);
@@ -177,9 +176,8 @@ export function useDraggableInfiniteReel({
     if (!hasDraggedRef.current && Math.abs(dx) > 5) {
       hasDraggedRef.current = true;
       isDraggingRef.current = true;
-      setIsDragging(true);
       try {
-        if (!e.currentTarget.hasPointerCapture(e.pointerId)) {
+        if (e.pointerType === 'mouse' && !e.currentTarget.hasPointerCapture(e.pointerId)) {
           e.currentTarget.setPointerCapture(e.pointerId);
         }
       } catch {}
@@ -218,7 +216,6 @@ export function useDraggableInfiniteReel({
 
     if (hasDraggedRef.current) {
       isDraggingRef.current = false;
-      setIsDragging(false);
 
       // Calculate inertia release velocity from recent history, clamped to [-1200, 1200]
       if (pointerHistoryRef.current.length > 0) {
@@ -238,7 +235,6 @@ export function useDraggableInfiniteReel({
       }, 90);
     } else {
       isDraggingRef.current = false;
-      setIsDragging(false);
       hasDraggedRef.current = false;
       justDraggedRef.current = false;
     }
@@ -249,7 +245,6 @@ export function useDraggableInfiniteReel({
     isDraggingRef.current = false;
     hasDraggedRef.current = false;
     justDraggedRef.current = false;
-    setIsDragging(false);
     try {
       if (e.currentTarget.hasPointerCapture(e.pointerId)) {
         e.currentTarget.releasePointerCapture(e.pointerId);
@@ -278,7 +273,7 @@ export function useDraggableInfiniteReel({
     viewportRef,
     trackRef,
     singleSetRef,
-    isDragging,
+    isDragging: isDraggingRef.current,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,

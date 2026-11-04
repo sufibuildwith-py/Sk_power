@@ -87,6 +87,25 @@ html[lang="hi"] .font-display {
   transform: translateY(-2px);
 }
 
+/* Disable scale/lift/pop completely for cards inside draggable reels */
+[role="region"] .glass-card,
+[role="region"] .glass-card:hover,
+[role="region"] .glass-card:active,
+[role="region"] .glass-card:focus {
+  transform: none !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.48),
+    0 8px 24px rgba(55, 125, 175, 0.09) !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+
+@media (hover: none) {
+  .glass-card:hover,
+  .glass-card-subtle:hover {
+    transform: none !important;
+  }
+}
+
 .glass-card-subtle {
   position: relative;
   background: rgba(140, 208, 250, 0.25);
