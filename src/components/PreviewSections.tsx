@@ -5,6 +5,14 @@ import { PMSuryaGharSection } from './PMSuryaGharSection';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import { SolarSavingsCalculator } from './SolarSavingsCalculator';
 import { TrustedBrandsSection } from './TrustedBrandsSection';
+import { ContactSection } from './ContactSection';
+import {
+  WHATSAPP_DISPLAY_NUMBER,
+  CALL_DISPLAY_NUMBER,
+  buildWhatsAppUrl,
+  getPhoneCallUrl,
+  buildGeneralEnquiryMessage,
+} from '../utils/whatsapp';
 
 import { QuotePrefillData } from './QuoteModal';
 
@@ -181,8 +189,11 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = React.memo(({ onO
       {/* 4. PM Surya Ghar: Muft Bijli Yojana Section */}
       <PMSuryaGharSection onOpenQuote={onOpenQuote} />
 
-      {/* 5. Footer & Contact */}
-      <footer id="contact" className="w-full py-16 px-6 sm:px-10 md:px-14 border-t border-solar-charcoal/10 bg-[#f0ede4]">
+      {/* 5. Contact Section — Official Redesigned Section with Centralised Routing */}
+      <ContactSection />
+
+      {/* 6. Site Footer */}
+      <footer className="w-full py-16 px-6 sm:px-10 md:px-14 border-t border-solar-charcoal/10 bg-[#f0ede4]">
         <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg overflow-hidden bg-white/95 border border-solar-charcoal/10 shadow-sm flex items-center justify-center shrink-0">
@@ -199,11 +210,28 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = React.memo(({ onO
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-medium text-solar-charcoal/80">
+          <div className="flex flex-wrap items-center gap-5 sm:gap-7 text-xs font-medium text-solar-charcoal/80">
             <a href="#hero" className="hover:text-solar-ink transition-colors">{t('footer.topOfPage')}</a>
             <a href="#solutions" className="hover:text-solar-ink transition-colors">{t('footer.solutions')}</a>
             <a href="#about" className="hover:text-solar-ink transition-colors">{t('nav.about')}</a>
             <a href="#pm-surya-ghar" className="hover:text-solar-ink transition-colors">{t('footer.pmSuryaGhar')}</a>
+            <a href="#contact" className="hover:text-solar-ink transition-colors">{t('nav.contact')}</a>
+            <a
+              href={buildWhatsAppUrl(buildGeneralEnquiryMessage())}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 hover:text-emerald-800 font-semibold transition-colors inline-flex items-center gap-1"
+              title="Official WhatsApp: +91 8004195835"
+            >
+              <span>WhatsApp: {WHATSAPP_DISPLAY_NUMBER}</span>
+            </a>
+            <a
+              href={getPhoneCallUrl()}
+              className="hover:text-solar-amber font-semibold transition-colors inline-flex items-center gap-1"
+              title="Official Phone: +91 9569831451"
+            >
+              <span>Call: {CALL_DISPLAY_NUMBER}</span>
+            </a>
             <button onClick={() => onOpenQuote()} className="hover:text-solar-amber font-semibold transition-colors">
               {t('footer.requestQuote')}
             </button>

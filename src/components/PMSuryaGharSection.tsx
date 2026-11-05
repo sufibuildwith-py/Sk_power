@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DraggableCardTrack } from './DraggableCardTrack';
+import { openWhatsApp, buildSuryaGharEnquiryMessage } from '../utils/whatsapp';
 import {
   SunMedium,
   ChevronDown,
@@ -621,8 +622,9 @@ export const PMSuryaGharSection: React.FC<PMSuryaGharSectionProps> = ({ onOpenQu
             </button>
 
             <button
-              onClick={onOpenQuote}
+              onClick={() => openWhatsApp(buildSuryaGharEnquiryMessage())}
               className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-solar-ivory text-xs sm:text-sm font-semibold transition-all border border-white/20 inline-flex items-center gap-2"
+              title="Chat with PM Surya Ghar Team on WhatsApp"
             >
               <span>{t('pmSuryaGhar.ctaPanel.secondaryBtn')}</span>
               <ArrowRight className="w-4 h-4 text-solar-amber" />

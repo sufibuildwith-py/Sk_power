@@ -3,6 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, MapPin, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
+import {
+  buildQuoteModalEnquiryMessage,
+  openWhatsApp,
+  WHATSAPP_DISPLAY_NUMBER,
+} from '../utils/whatsapp';
 
 export interface QuotePrefillData {
   serviceInterest?: string;
@@ -23,10 +28,15 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
   const [serviceInterest, setServiceInterest] = useState<string>('pmsuryaghar');
   const [selectedCity, setSelectedCity] = useState<string>('varanasi');
   const [bill, setBill] = useState<string>('');
+  const [fullName, setFullName] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [lastMessage, setLastMessage] = useState<string>('');
 
   useEffect(() => {
     if (!isOpen) {
       setSubmitted(false);
+      setFullName('');
+      setPhone('');
       return;
     }
 
@@ -51,7 +61,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!fullName.trim() || !phone.trim()) return;
+
+    const serviceLabelMap: Record<string, string> = {
+      pmsuryaghar: 'PM Surya Ghar Scheme',
+      residential: 'Residential Rooftop Solar',
+      commercial: 'Commercial Solar',
+      hardware: 'Solar Hardware & Wholesale',
+    };
+    const cityLabelMap: Record<string, string> = {
+      varanasi: 'Varanasi',
+      nearby_up: 'Nearby Uttar Pradesh',
+    };
+
+    const message = buildQuoteModalEnquiryMessage({
+      name: fullName,
+      phone,
+      serviceInterest: serviceLabelMap[serviceInterest] || serviceInterest,
+      city: cityLabelMap[selectedCity] || selectedCity,
+      bill: bill || undefined,
+    });
+
+    setLastMessage(message);
     setSubmitted(true);
+    openWhatsApp(message);
   };
 
   const handleClose = () => {
@@ -111,16 +144,29 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
                 <h3 className="font-display text-2xl font-medium text-solar-ink mb-2">
                   {t('quoteModal.submittedTitle')}
                 </h3>
-                <p className="text-xs sm:text-sm text-solar-charcoal/80 max-w-xs mx-auto mb-6">
+                <p className="text-xs sm:text-sm text-solar-charcoal/80 max-w-sm mx-auto mb-6 leading-relaxed">
                   {t('quoteModal.submittedDesc')}
                 </p>
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide text-solar-ivory glass-dark-pill active:scale-95 transition-transform"
-                >
-                  {t('quoteModal.closeButton')}
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => openWhatsApp(lastMessage)}
+                    className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide text-white bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    <span>Open in WhatsApp</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide text-solar-ink bg-white border border-solar-charcoal/20 hover:bg-white/80 active:scale-95 transition-transform"
+                  >
+                    {t('quoteModal.closeButton')}
+                  </button>
+                </div>
+                <p className="text-[11px] text-solar-charcoal/60 mt-4">
+                  WhatsApp Contact: <span className="font-semibold text-solar-ink">{WHATSAPP_DISPLAY_NUMBER}</span>
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
@@ -211,6 +257,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
                       <input
                         required
                         type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
                         placeholder={t('quoteModal.fullNamePlaceholder')}
                         className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
                       />
@@ -223,6 +271,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, prefill
                       <input
                         required
                         type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         placeholder={t('quoteModal.phonePlaceholder')}
                         className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-white border border-solar-charcoal/15 focus:outline-none focus:border-solar-amber transition-colors"
                       />

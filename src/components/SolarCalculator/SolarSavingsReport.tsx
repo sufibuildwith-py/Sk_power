@@ -21,6 +21,7 @@ import {
 import { SolarCalculationResults, SolarCalculatorInputs } from '../../lib/solarCalculator';
 import { UP_DISTRICTS } from '../../config/solarAssumptions';
 import { generateSolarAssessmentPdf } from '../../lib/generateSolarAssessmentPdf';
+import { openWhatsApp } from '../../utils/whatsapp';
 
 interface SolarSavingsReportProps {
   inputs: SolarCalculatorInputs;
@@ -59,10 +60,10 @@ export const SolarSavingsReport: React.FC<SolarSavingsReportProps> = ({
     year: 'numeric',
   });
 
-  // Share via WhatsApp
+  // Share estimate / enquire via WhatsApp
   const handleShareWhatsApp = () => {
-    const text = encodeURIComponent(
-      `*SK SOLAR WALA — Solar Savings Estimate*\n` +
+    const message =
+      `Hello SK SOLAR WALA, I generated a solar estimate on your website and would like to proceed with consultation:\n` +
       `📍 Location: ${districtName}, Uttar Pradesh\n` +
       `⚡ Recommended Plant Size: ${results.actualCapacityKwp} kWp (${results.moduleCount} × ${results.moduleWattage}W panels)\n` +
       `☀️ Estimated Monthly Generation: ${formatUnits(results.monthlyGenerationKwh)} Units\n` +
@@ -70,10 +71,9 @@ export const SolarSavingsReport: React.FC<SolarSavingsReportProps> = ({
       `📈 Estimated Annual Savings: ${formatCurrency(results.annualSavingsInr)}\n` +
       `${results.subsidy.isEligible ? `🏛️ Estimated PM Surya Ghar Subsidy: ${formatCurrency(results.subsidy.totalSubsidy)}\n` : ''}` +
       `💵 Estimated Net Investment: ${formatCurrency(results.netInvestmentInr)}\n` +
-      `⏱️ Payback Period: ~${results.simplePaybackYears || 'N/A'} years\n\n` +
-      `Get in touch with SK SOLAR WALA for rooftop solar installations in Varanasi & UP!`
-    );
-    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+      `⏱️ Payback Period: ~${results.simplePaybackYears || 'N/A'} years`;
+
+    openWhatsApp(message);
   };
 
   // Download Standalone One-Page A4 PDF Assessment Report
