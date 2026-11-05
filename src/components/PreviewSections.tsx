@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { PMSuryaGharSection } from './PMSuryaGharSection';
 import { DraggableCardTrack } from './DraggableCardTrack';
 import { SolarSavingsCalculator } from './SolarSavingsCalculator';
+import { ClientReviewsSection } from './ClientReviewsSection';
 import { TrustedBrandsSection } from './TrustedBrandsSection';
 import { ContactSection } from './ContactSection';
 import {
@@ -138,7 +139,10 @@ export const PreviewSections: React.FC<PreviewSectionsProps> = React.memo(({ onO
         </DraggableCardTrack>
       </section>
 
-      {/* 2. About Section */}
+      {/* 2. Client Reviews & Trust Section (Two Opposing Motion Trains) */}
+      <ClientReviewsSection />
+
+      {/* 3. About Section */}
       <section id="about" className="w-full py-24 sm:py-32 px-6 sm:px-10 md:px-14 max-w-[1920px] mx-auto border-t border-solar-charcoal/10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
