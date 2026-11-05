@@ -5,6 +5,10 @@ import { DraggableCardTrack } from './DraggableCardTrack';
 interface ReviewItem {
   id: string;
   src: string;
+  srcSet: string;
+  fallbackJpg: string;
+  width: number;
+  height: number;
   alt: string;
   isLandscape?: boolean;
 }
@@ -13,31 +17,51 @@ interface ReviewItem {
 const TRAIN_1_ITEMS: ReviewItem[] = [
   {
     id: 'rev-01',
-    src: '/reviews/20260814_91455AMByGPSMapCamera.jpg',
+    src: '/reviews/20260814_91455AMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260814_91455AMByGPSMapCamera-sm.webp 390w, /reviews/20260814_91455AMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260814_91455AMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified rooftop solar installation in Pandit Deen Dayal Upadhyaya Nagar, UP',
     isLandscape: false,
   },
   {
     id: 'rev-02',
-    src: '/reviews/download%20(2).jpg',
+    src: '/reviews/download-2.webp',
+    srcSet: '/reviews/download-2-sm.webp 520w, /reviews/download-2.webp 1024w',
+    fallbackJpg: '/reviews/download (2).jpg',
+    width: 1024,
+    height: 575,
     alt: 'SK SOLAR WALA elevated rooftop solar module installation',
     isLandscape: true,
   },
   {
     id: 'rev-03',
-    src: '/reviews/20260824_100608AMByGPSMapCamera.jpg',
+    src: '/reviews/20260824_100608AMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260824_100608AMByGPSMapCamera-sm.webp 390w, /reviews/20260824_100608AMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260824_100608AMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified installation with customer in Uttar Pradesh',
     isLandscape: false,
   },
   {
     id: 'rev-04',
-    src: '/reviews/download.jpg',
+    src: '/reviews/download.webp',
+    srcSet: '/reviews/download-sm.webp 390w, /reviews/download.webp 730w',
+    fallbackJpg: '/reviews/download.jpg',
+    width: 730,
+    height: 973,
     alt: 'SK SOLAR WALA verified customer on rooftop with solar installation in UP',
     isLandscape: false,
   },
   {
     id: 'rev-05',
-    src: '/reviews/20260904_30604PMByGPSMapCamera.jpg',
+    src: '/reviews/20260904_30604PMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260904_30604PMByGPSMapCamera-sm.webp 390w, /reviews/20260904_30604PMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260904_30604PMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified customer rooftop solar plant in Kailashpuri, UP',
     isLandscape: false,
   },
@@ -47,31 +71,51 @@ const TRAIN_1_ITEMS: ReviewItem[] = [
 const TRAIN_2_ITEMS: ReviewItem[] = [
   {
     id: 'rev-06',
-    src: '/reviews/20260906_121539PMByGPSMapCamera.jpg',
+    src: '/reviews/20260906_121539PMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260906_121539PMByGPSMapCamera-sm.webp 390w, /reviews/20260906_121539PMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260906_121539PMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified customer rooftop installation in Chandauli, UP',
     isLandscape: false,
   },
   {
     id: 'rev-07',
-    src: '/reviews/download%20(3).jpg',
+    src: '/reviews/download-3.webp',
+    srcSet: '/reviews/download-3-sm.webp 520w, /reviews/download-3.webp 1024w',
+    fallbackJpg: '/reviews/download (3).jpg',
+    width: 1024,
+    height: 575,
     alt: 'SK SOLAR WALA dusk view of premium rooftop solar array',
     isLandscape: true,
   },
   {
     id: 'rev-08',
-    src: '/reviews/20260908_125813PMByGPSMapCamera.jpg',
+    src: '/reviews/20260908_125813PMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260908_125813PMByGPSMapCamera-sm.webp 390w, /reviews/20260908_125813PMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260908_125813PMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified customer with rooftop solar system in New Mahal, UP',
     isLandscape: false,
   },
   {
     id: 'rev-09',
-    src: '/reviews/download%20(1).jpg',
+    src: '/reviews/download-1.webp',
+    srcSet: '/reviews/download-1-sm.webp 292w, /reviews/download-1.webp 547w',
+    fallbackJpg: '/reviews/download (1).jpg',
+    width: 547,
+    height: 973,
     alt: 'SK SOLAR WALA happy customer at completed solar rooftop project',
     isLandscape: false,
   },
   {
     id: 'rev-10',
-    src: '/reviews/20260930_45700PMByGPSMapCamera.jpg',
+    src: '/reviews/20260930_45700PMByGPSMapCamera.webp',
+    srcSet: '/reviews/20260930_45700PMByGPSMapCamera-sm.webp 390w, /reviews/20260930_45700PMByGPSMapCamera.webp 768w',
+    fallbackJpg: '/reviews/20260930_45700PMByGPSMapCamera.jpg',
+    width: 768,
+    height: 1024,
     alt: 'SK SOLAR WALA verified customer with on-grid solar plant in Ledhupur, UP',
     isLandscape: false,
   },
@@ -128,7 +172,7 @@ export const ClientReviewsSection: React.FC = React.memo(() => {
           trackClassName="gap-3 sm:gap-4 md:gap-5"
           ariaLabel="Client Installation Proofs (Train 1)"
         >
-          {TRAIN_1_ITEMS.map((item) => {
+          {TRAIN_1_ITEMS.map((item, idx) => {
             const cardWidth = item.isLandscape
               ? 'w-[280px] sm:w-[340px] md:w-[380px]'
               : 'w-[160px] sm:w-[185px] md:w-[205px]';
@@ -138,14 +182,23 @@ export const ClientReviewsSection: React.FC = React.memo(() => {
                 key={item.id}
                 className={`glass-card rounded-2xl p-1.5 sm:p-2 ${cardWidth} h-[195px] sm:h-[225px] md:h-[245px] shrink-0 flex items-center justify-center select-none overflow-hidden transition-none`}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-full object-contain rounded-xl select-none pointer-events-none"
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
+                <picture className="w-full h-full flex items-center justify-center">
+                  <source
+                    type="image/webp"
+                    srcSet={item.srcSet}
+                    sizes={item.isLandscape ? '(max-width: 640px) 280px, 380px' : '(max-width: 640px) 160px, 205px'}
+                  />
+                  <img
+                    src={item.fallbackJpg}
+                    width={item.width}
+                    height={item.height}
+                    alt={item.alt}
+                    className="w-full h-full object-contain rounded-xl select-none pointer-events-none"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    draggable={false}
+                  />
+                </picture>
               </div>
             );
           })}
@@ -184,7 +237,7 @@ export const ClientReviewsSection: React.FC = React.memo(() => {
           trackClassName="gap-3 sm:gap-4 md:gap-5"
           ariaLabel="Client Installation Proofs (Train 2)"
         >
-          {TRAIN_2_ITEMS.map((item) => {
+          {TRAIN_2_ITEMS.map((item, idx) => {
             const cardWidth = item.isLandscape
               ? 'w-[280px] sm:w-[340px] md:w-[380px]'
               : 'w-[160px] sm:w-[185px] md:w-[205px]';
@@ -194,14 +247,23 @@ export const ClientReviewsSection: React.FC = React.memo(() => {
                 key={item.id}
                 className={`glass-card rounded-2xl p-1.5 sm:p-2 ${cardWidth} h-[195px] sm:h-[225px] md:h-[245px] shrink-0 flex items-center justify-center select-none overflow-hidden transition-none`}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-full object-contain rounded-xl select-none pointer-events-none"
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
+                <picture className="w-full h-full flex items-center justify-center">
+                  <source
+                    type="image/webp"
+                    srcSet={item.srcSet}
+                    sizes={item.isLandscape ? '(max-width: 640px) 280px, 380px' : '(max-width: 640px) 160px, 205px'}
+                  />
+                  <img
+                    src={item.fallbackJpg}
+                    width={item.width}
+                    height={item.height}
+                    alt={item.alt}
+                    className="w-full h-full object-contain rounded-xl select-none pointer-events-none"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    draggable={false}
+                  />
+                </picture>
               </div>
             );
           })}
